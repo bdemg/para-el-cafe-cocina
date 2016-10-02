@@ -20,7 +20,7 @@ public class Chef {
         String[][] adjustedIngredients = this.adjustIngredientsQuantity(
                 inputOrder.getProductQuantity(), unadjustedIngredients);
         IngredientsList ingredientsList = new IngredientsList(adjustedIngredients);
-        new IngredientsListManager(ingredientList);
+        //new IngredientsListManager(ingredientList);
     }
 
     private static final int INGREDIENT_QUANTITY = 1;
