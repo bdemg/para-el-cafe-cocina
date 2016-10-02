@@ -44,7 +44,7 @@ public final class OrdersManager extends Manager {
     }
     
     private void selectOrdersToBake() {
-        OrdersList orders = this.ordersBoard.getProductionTable();
+        OrdersList orders = this.ordersBoard.getOrdersList();
         for(int ordersCount = 0; ordersCount<orders.getRowCount();ordersCount++){
             boolean isProductSelected = (boolean)orders.getValueAt(ordersCount, OrdersList.SELECTION);
             if(isProductSelected){

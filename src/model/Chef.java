@@ -16,8 +16,8 @@ public class Chef {
     public void createIngredientsList(Order inputOrder) {
         Cookbook cookbook = Cookbook.getInstance();
         Recipe recipe = cookbook.getRecipe(inputOrder.getProductName());
-        String[][] unadjustedIngredients = recipe.getIngredients();
-        String[][] adjustedIngredients = this.adjustIngredientsQuantity(
+        Object[][] unadjustedIngredients = recipe.getIngredients();
+        Object[][] adjustedIngredients = this.adjustIngredientsQuantity(
                 inputOrder.getProductQuantity(), unadjustedIngredients);
         IngredientsList ingredientsList = new IngredientsList(adjustedIngredients);
         //new IngredientsListManager(ingredientList);
@@ -25,12 +25,20 @@ public class Chef {
 
     private static final int INGREDIENT_QUANTITY = 1;
 
-    private String[][] adjustIngredientsQuantity(int inputProductQuantity, String[][] modIngredients) {
-        for (int ingredientsCount = 0; ingredientsCount < modIngredients.length; ingredientsCount++) {
-            modIngredients[ingredientsCount][Chef.INGREDIENT_QUANTITY] = String.valueOf(
-                    Integer.valueOf(modIngredients[ingredientsCount][Chef.INGREDIENT_QUANTITY]) * inputProductQuantity);
+    private Object[][] adjustIngredientsQuantity(int inputProductQuantity, Object[][] modIngredients) {
+        for (Object[] modIngredient : modIngredients) {
+            if (ingredientQuantityIsInteger(modIngredient[Chef.INGREDIENT_QUANTITY])) {
+                modIngredient[Chef.INGREDIENT_QUANTITY] = ((int) modIngredient[Chef.INGREDIENT_QUANTITY] * inputProductQuantity);
+            } else {
+                Fraction ingredientQuantity = (Fraction) modIngredient[Chef.INGREDIENT_QUANTITY];
+                ingredientQuantity.setNominator(ingredientQuantity.getNominator() * inputProductQuantity);
+                modIngredient[Chef.INGREDIENT_QUANTITY] = ingredientQuantity;
+            }
         }
         return modIngredients;
     }
 
+    private boolean ingredientQuantityIsInteger(Object inputIngredientQuantity) {
+        return inputIngredientQuantity instanceof Integer;
+    }
 }
