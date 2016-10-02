@@ -25,9 +25,9 @@ public final class IngredientsListManager extends Manager {
     public void actionPerformed(ActionEvent event) {
         Object eventSource = event.getSource();
         if (isBaking(eventSource)) {
-            chef.bake();
+            //chef.bake();
         } else if (isNotGoingToBake(eventSource)) {
-            this.scrapIngredientsList();
+            //this.scrapIngredientsList();
         }
     }
 
