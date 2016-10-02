@@ -31,7 +31,7 @@ public class Chef {
                 modIngredient[Chef.INGREDIENT_QUANTITY] = ((int) modIngredient[Chef.INGREDIENT_QUANTITY] * inputProductQuantity);
             } else {
                 Fraction ingredientQuantity = (Fraction) modIngredient[Chef.INGREDIENT_QUANTITY];
-                ingredientQuantity.setNominator(ingredientQuantity.getNominator() * inputProductQuantity);
+                ingredientQuantity.setNumerator(ingredientQuantity.getNumerator() * inputProductQuantity);
                 modIngredient[Chef.INGREDIENT_QUANTITY] = ingredientQuantity;
             }
         }
