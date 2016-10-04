@@ -26,6 +26,7 @@ public final class OrdersManager extends Manager {
     public OrdersManager() {
         this.ordersBoard = new OrdersBoard();
         this.chef = new Chef();
+        
         this.ordersBoard.setVisible(true);
         this.addActionListeners();
     }
@@ -45,13 +46,17 @@ public final class OrdersManager extends Manager {
     
     private void selectOrdersToBake() {
         OrdersList orders = this.ordersBoard.getOrdersList();
+        
         for(int ordersCount = 0; ordersCount<orders.getRowCount();ordersCount++){
-            boolean isProductSelected = (boolean)orders.getValueAt(ordersCount, OrdersList.SELECTION);
-            if(isProductSelected){
+            
+            boolean isOrderSelected = (boolean)orders.getValueAt(ordersCount, OrdersList.SELECTION);
+            if(isOrderSelected){
+                
                 String productName = (String)orders.getValueAt(ordersCount, OrdersList.PRODUCT_NAME);
                 int productQuantity = (int)orders.getValueAt(ordersCount, OrdersList.PRODUCT_QUANTITY);
                 String dueDate = (String)orders.getValueAt(ordersCount, OrdersList.DUE_DATE);
                 Order selectedOrder = new Order(productName, productQuantity, dueDate);
+                
                 this.chef.createIngredientsList(selectedOrder);
             }
         }
