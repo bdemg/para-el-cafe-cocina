@@ -99,7 +99,7 @@ public class OrdersBoard extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 OrdersBoard view = new OrdersBoard();
-                OrdersList demoTable = view.getProductionTable();
+                OrdersList demoTable = view.getOrdersList();
                 Object[] data = {"Pastel de Naranja", 3, "13/10/2016", false};
                 demoTable.addRow(data);
                 view.setVisible(true);
@@ -117,7 +117,7 @@ public class OrdersBoard extends javax.swing.JFrame {
         return buttonOk;
     }
 
-    public OrdersList getProductionTable() {
+    public OrdersList getOrdersList() {
         return (OrdersList) this.tableProduction.getModel();
     }
 

@@ -3,8 +3,8 @@ package model.recipe;
 public class BrownieRecipe implements Recipe{
 
     @Override
-    public String[][] getIngredients() {
-        String[][] outputRecipe = null;
+    public Object[][] getIngredients() {
+        Object[][] outputRecipe = null;
         return outputRecipe;
     }
     

@@ -16,14 +16,14 @@ public class Fraction {
     private static final String FRACTIONAL_BAR = "/";
     private static final String BLANK_SPACE = " ";
 
-    public Fraction(int nominator, int denominator) {
-        this.numerator = nominator;
+    public Fraction(int numerator, int denominator) {
+        this.numerator = numerator;
         if (!this.isZero(denominator)) {
             this.denominator = denominator;
         }
     }
 
-    public int getNominator() {
+    public int getNumerator() {
         return numerator;
     }
 
@@ -31,8 +31,8 @@ public class Fraction {
         return denominator;
     }
 
-    public void setNominator(int nominator) {
-        this.numerator = nominator;
+    public void setNumerator(int numerator) {
+        this.numerator = numerator;
     }
 
     public void setDenominator(int denominator) {
