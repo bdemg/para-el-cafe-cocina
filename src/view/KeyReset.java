@@ -10,7 +10,7 @@ import javax.swing.JPasswordField;
 
 /**
  *
- * @author José
+ * @author Antonio Soto
  */
 public class KeyReset extends javax.swing.JFrame {
 
@@ -37,6 +37,7 @@ public class KeyReset extends javax.swing.JFrame {
         buttonOk = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Para el café");
 
         labelNewPassword.setText("Nueva contraseña:");
 

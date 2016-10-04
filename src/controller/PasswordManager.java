@@ -27,7 +27,7 @@ public class PasswordManager extends Manager {
     public void actionPerformed(ActionEvent event) {
         Object eventSource = event.getSource();
         if (eventSource == this.keyreset.getButtonOk()) {
-            this.writeNewPassword();
+            this.storeNewPassword();
             this.callAccessManager();
         }
     }
@@ -37,7 +37,7 @@ public class PasswordManager extends Manager {
         this.keyreset.getButtonOk().addActionListener(this);
     }
 
-    private void writeNewPassword() {
+    private void storeNewPassword() {
         if (validateNewPassword()) {
             String newPassword = this.keyreset.getNewPasswordField().getText();
             String cryptedPassword = this.cryptographer.encryptMessage(newPassword);
@@ -47,26 +47,25 @@ public class PasswordManager extends Manager {
                 writeFile.close();
             } catch (FileNotFoundException ex) {
                 String errorMessage = "(Error) No se encontró el archivo. Consulte con el Ingeniero.";
-                String errorTitle = "¡Error!";
-                this.showErrorMessage(errorMessage, errorTitle);
+                this.showErrorMessage(errorMessage);
             }
         } else {
             String errorMessage = "(Error) Contraseña inválida.";
-            String errorTitle = "¡Error!";
-            this.showErrorMessage(errorMessage, errorTitle);
+            this.showErrorMessage(errorMessage);
         }
     }
 
     private boolean validateNewPassword() {
         String newPassword = this.keyreset.getNewPasswordField().getText();
-        String confirmNewPassword = this.keyreset.getNewPasswordField().getText();
+        String confirmNewPassword = this.keyreset.getConfirmNewPasswordField().getText();
         boolean nullEntry = ((newPassword.compareTo("") == 0) && (confirmNewPassword.compareTo("") == 0));
         boolean equalPasswords = (newPassword.compareTo(confirmNewPassword) == 0);
         return (!nullEntry && equalPasswords);
     }
 
-    private void showErrorMessage(String errorMessage, String errorTitle) {
+    private void showErrorMessage(String errorMessage) {
         JFrame errorFrame = new JFrame();
+        String errorTitle = "¡Error!";
         JOptionPane.showMessageDialog(errorFrame, errorMessage, errorTitle, JOptionPane.ERROR_MESSAGE);
     }
     

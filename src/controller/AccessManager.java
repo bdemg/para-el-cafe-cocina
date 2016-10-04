@@ -3,7 +3,6 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -35,7 +34,8 @@ public class AccessManager extends Manager {
         if (eventSource == this.accessDoor.getButtonEnterDoor()) {
             this.enterAccessDoor();
         } else if (eventSource == this.accessDoor.getButtonForgotPassword()) {
-            this.askSecurityQuestion();
+            String questionAnswer = this.askSecurityQuestion();
+            this.callPasswordManager(questionAnswer);
         }
     }
 
@@ -50,8 +50,7 @@ public class AccessManager extends Manager {
             // Se accede al programa.
         } else {
             String errorMessage = "(Error) Contraseña inválida.";
-            String errorTitle = "¡Error!";
-            this.showErrorMessage(errorMessage, errorTitle);
+            this.showErrorMessage(errorMessage);
         }
     }
 
@@ -67,36 +66,35 @@ public class AccessManager extends Manager {
             }
         } catch (FileNotFoundException ex) {
             String errorMessage = "(Error) No se encontró el archivo. Consulte con el Ingeniero.";
-            String errorTitle = "¡Error!";
-            this.showErrorMessage(errorMessage, errorTitle);
+            this.showErrorMessage(errorMessage);
         }
         return false;
     }
 
-    private void showErrorMessage(String errorMessage, String errorTitle) {
+    private void showErrorMessage(String errorMessage) {
         JFrame errorFrame = new JFrame();
+        String errorTitle = "¡Error!";
         JOptionPane.showMessageDialog(errorFrame, errorMessage, errorTitle, JOptionPane.ERROR_MESSAGE);
     }
-    
-    private void askSecurityQuestion(){
+
+    private String askSecurityQuestion() {
         JFrame questionFrame = new JFrame();
         String questionMessage = "¿Cuál es su nombre?";
         String questionTitle = "Pregunta de Seguridad";
-        String answer = JOptionPane.showInputDialog(questionFrame, 
+        String questionAnswer = JOptionPane.showInputDialog(questionFrame,
                 questionMessage, questionTitle, JOptionPane.QUESTION_MESSAGE);
-        if(answer.compareTo("nombre")==0){
-            this.callPasswordManager();
-        }
-        else{
-            String errorMessage = "(Error) No es la respuesta correcta.";
-            String errorTitle = "¡Error!";
-            this.showErrorMessage(errorMessage, errorTitle);
-        }
+        return questionAnswer;
     }
-    
-    private void callPasswordManager(){
-        this.accessDoor.dispose();
-        PasswordManager passwordManager = new PasswordManager();
+
+    private void callPasswordManager(String questionAnswer) {
+        boolean isAnswerCorrect = (questionAnswer.compareTo("nombre") == 0);
+        if (isAnswerCorrect) {
+            this.accessDoor.dispose();
+            PasswordManager passwordManager = new PasswordManager();
+        } else {
+            String errorMessage = "(Error) No es la respuesta correcta.";
+            this.showErrorMessage(errorMessage);
+        }
     }
 
 }
