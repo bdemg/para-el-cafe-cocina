@@ -19,16 +19,16 @@ public class OrdersList extends DefaultTableModel {
     public Class<?> getColumnClass(int inputColumnIndex) {
         Class columnClass = String.class;
         switch (inputColumnIndex) {
-            case 0:
+            case OrdersList.PRODUCT_NAME:
                 columnClass = String.class;
                 break;
-            case 1:
-                columnClass = Integer.class;
+            case OrdersList.PRODUCT_QUANTITY:
+                columnClass = Object.class;
                 break;
-            case 2:
+            case OrdersList.DUE_DATE:
                 columnClass = String.class;
                 break;
-            case 3:
+            case OrdersList.SELECTION:
                 columnClass = Boolean.class;
                 break;
         }

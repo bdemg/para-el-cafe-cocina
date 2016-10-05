@@ -5,9 +5,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class IngredientsList extends DefaultTableModel{
     
-    public static final int INGREDIENT_NAME_COLUMN = 0;
-    public static final int INGREDIENT_QUANTITY_COLUMN = 1;
-    public static final int INGREDIENT_UNIT_COLUMN = 2;
+    public static final int INGREDIENT_NAME = 0;
+    public static final int INGREDIENT_QUANTITY = 1;
+    public static final int INGREDIENT_UNIT = 2;
     
     private static final String[] COLUMN_TITLES = {"Ingredientes", "Cantidad", "Unidades"};
     

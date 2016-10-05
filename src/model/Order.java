@@ -10,9 +10,9 @@ package model;
  * @author Jorge A. Cano
  */
 public class Order {
-    private String productName;
-    private int productQuantity;
-    private String dueDate;
+    private final String productName;
+    private final int productQuantity;
+    private final String dueDate;
 
     public Order(String productNames, int productQuantity, String dueDate) {
         this.productName = productNames;

@@ -43,20 +43,23 @@ public class Fraction {
 
     @Override
     public String toString() {
-        String fraction;
+        String fractionRepresentation;
         if (this.isProperFraction()) {
-            fraction = this.numerator + Fraction.FRACTIONAL_BAR + this.denominator;
+            fractionRepresentation = this.numerator + Fraction.FRACTIONAL_BAR +
+                    this.denominator;
         } else if (this.isInteger()) {
-            fraction = String.valueOf((int) this.numerator / this.denominator);
+            fractionRepresentation = String.valueOf( (int) this.numerator /
+                    this.denominator );
         } else {
-            fraction = String.valueOf((int) this.numerator / this.denominator)
-                    + Fraction.BLANK_SPACE + this.numerator % this.denominator + Fraction.FRACTIONAL_BAR + this.denominator;
+            fractionRepresentation = String.valueOf( (int) this.numerator / this.denominator ) +
+                    Fraction.BLANK_SPACE + ( this.numerator % this.denominator ) +
+                    Fraction.FRACTIONAL_BAR + this.denominator;
         }
-        return fraction;
+        return fractionRepresentation;
     }
 
     private boolean isProperFraction() {
-        return this.numerator <= this.denominator;
+        return this.numerator < this.denominator;
     }
 
     private boolean isInteger() {

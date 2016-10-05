@@ -6,11 +6,8 @@
 package controller;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import model.Chef;
-import model.Cookbook;
 import model.Order;
-import model.recipe.Recipe;
 import model.OrdersList;
 import view.OrdersBoard;
 
@@ -20,14 +17,11 @@ import view.OrdersBoard;
  */
 public final class OrdersManager extends Manager {
     private final OrdersBoard ordersBoard;
-    private final Chef chef;
-    
     
     public OrdersManager() {
         this.ordersBoard = new OrdersBoard();
-        this.chef = new Chef();
-        
         this.ordersBoard.setVisible(true);
+        
         this.addActionListeners();
     }
     
@@ -35,11 +29,13 @@ public final class OrdersManager extends Manager {
     @Override
     public void actionPerformed(ActionEvent event) {
         Object eventSource = event.getSource();
+        
         if(eventSource == this.ordersBoard.getButtonOk()){
             this.selectOrdersToBake();
         }
     }
 
+    @Override
     protected void addActionListeners() {
         this.ordersBoard.getButtonOk().addActionListener(this);
     }
@@ -57,7 +53,7 @@ public final class OrdersManager extends Manager {
                 String dueDate = (String)orders.getValueAt(ordersCount, OrdersList.DUE_DATE);
                 Order selectedOrder = new Order(productName, productQuantity, dueDate);
                 
-                this.chef.createIngredientsList(selectedOrder);
+                Chef.getInstance().createIngredientsList(selectedOrder);
             }
         }
     }

@@ -6,6 +6,7 @@ import model.recipe.Recipe;
 public class Cookbook {
     
     private static final Cookbook instance = new Cookbook();
+    public static final int INGREDIENT_QUANTITY = 1;
     
     private final String ORANGECAKE = "Pastel de Naranja";
     
