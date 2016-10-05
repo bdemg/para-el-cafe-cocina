@@ -31,9 +31,9 @@ public class KeyReset extends javax.swing.JFrame {
     private void initComponents() {
 
         labelNewPassword = new javax.swing.JLabel();
-        NewPasswordField = new javax.swing.JPasswordField();
+        newPasswordField = new javax.swing.JPasswordField();
         labelConfirmNewPassword = new javax.swing.JLabel();
-        ConfirmNewPasswordField = new javax.swing.JPasswordField();
+        confirmNewPasswordField = new javax.swing.JPasswordField();
         buttonOk = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,8 +56,8 @@ public class KeyReset extends javax.swing.JFrame {
                     .addComponent(labelNewPassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NewPasswordField)
-                    .addComponent(ConfirmNewPasswordField)
+                    .addComponent(newPasswordField)
+                    .addComponent(confirmNewPasswordField)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(104, 104, 104)
                         .addComponent(buttonOk)
@@ -70,11 +70,11 @@ public class KeyReset extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNewPassword)
-                    .addComponent(NewPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(newPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelConfirmNewPassword)
-                    .addComponent(ConfirmNewPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(confirmNewPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(buttonOk)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -119,23 +119,27 @@ public class KeyReset extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField ConfirmNewPasswordField;
-    private javax.swing.JPasswordField NewPasswordField;
     private javax.swing.JButton buttonOk;
+    private javax.swing.JPasswordField confirmNewPasswordField;
     private javax.swing.JLabel labelConfirmNewPassword;
     private javax.swing.JLabel labelNewPassword;
+    private javax.swing.JPasswordField newPasswordField;
     // End of variables declaration//GEN-END:variables
 
     public JPasswordField getConfirmNewPasswordField() {
-        return ConfirmNewPasswordField;
+        return confirmNewPasswordField;
     }
 
     public JPasswordField getNewPasswordField() {
-        return NewPasswordField;
+        return newPasswordField;
     }
 
     public JButton getButtonOk() {
         return buttonOk;
     }
     
+    public void clearFields(){
+        this.newPasswordField.setText("");
+        this.confirmNewPasswordField.setText("");
+    }
 }

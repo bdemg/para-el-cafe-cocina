@@ -1,22 +1,18 @@
 package controller;
 
 import java.awt.event.ActionEvent;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
-import model.Cryptographer;
+import model.ErrorMessager;
+import model.PasswordCypher;
+import model.PasswordFileDAO;
 import view.KeyReset;
 
 public class PasswordManager extends Manager {
 
     private final KeyReset keyreset;
-    private final Cryptographer cryptographer;
 
     public PasswordManager() {
         this.keyreset = new KeyReset();
-        this.cryptographer = new Cryptographer();
         this.keyreset.setResizable(false);
         this.keyreset.setLocationRelativeTo(null);
         this.keyreset.setVisible(true);
@@ -27,8 +23,14 @@ public class PasswordManager extends Manager {
     public void actionPerformed(ActionEvent event) {
         Object eventSource = event.getSource();
         if (eventSource == this.keyreset.getButtonOk()) {
-            this.storeNewPassword();
-            this.callAccessManager();
+            if (arePasswordsMatching()) {
+                this.storeNewPassword();
+                this.callAccessManager();
+            } else {
+                ErrorMessager errorMessager = ErrorMessager.getInstance();
+                errorMessager.showErrorMessage(errorMessager.INPUT_PASSWORD_ERROR);
+                this.keyreset.clearFields();
+            }
         }
     }
 
@@ -38,38 +40,22 @@ public class PasswordManager extends Manager {
     }
 
     private void storeNewPassword() {
-        if (validateNewPassword()) {
-            String newPassword = this.keyreset.getNewPasswordField().getText();
-            String cryptedPassword = this.cryptographer.encryptMessage(newPassword);
-            try {
-                PrintWriter writeFile = new PrintWriter("pecc.lo");
-                writeFile.println(cryptedPassword);
-                writeFile.close();
-            } catch (FileNotFoundException ex) {
-                String errorMessage = "(Error) No se encontró el archivo. Consulte con el Ingeniero.";
-                this.showErrorMessage(errorMessage);
-            }
-        } else {
-            String errorMessage = "(Error) Contraseña inválida.";
-            this.showErrorMessage(errorMessage);
-        }
+        String newPassword = this.keyreset.getNewPasswordField().getText();
+        PasswordCypher passwordCypher = PasswordCypher.getInstance();
+        String cryptedPassword = passwordCypher.encryptPassword(newPassword);
+        PasswordFileDAO passwordFileDAO = PasswordFileDAO.getInstance();
+        passwordFileDAO.writePassword(cryptedPassword);
     }
 
-    private boolean validateNewPassword() {
+    private boolean arePasswordsMatching() {
         String newPassword = this.keyreset.getNewPasswordField().getText();
         String confirmNewPassword = this.keyreset.getConfirmNewPasswordField().getText();
-        boolean nullEntry = ((newPassword.compareTo("") == 0) && (confirmNewPassword.compareTo("") == 0));
-        boolean equalPasswords = (newPassword.compareTo(confirmNewPassword) == 0);
-        return (!nullEntry && equalPasswords);
+        boolean isNullEntry = ((newPassword.compareTo("") == 0) && (confirmNewPassword.compareTo("") == 0));
+        boolean areEqualPasswords = (newPassword.compareTo(confirmNewPassword) == 0);
+        return (!isNullEntry && areEqualPasswords);
     }
 
-    private void showErrorMessage(String errorMessage) {
-        JFrame errorFrame = new JFrame();
-        String errorTitle = "¡Error!";
-        JOptionPane.showMessageDialog(errorFrame, errorMessage, errorTitle, JOptionPane.ERROR_MESSAGE);
-    }
-    
-    private void callAccessManager(){
+    private void callAccessManager() {
         this.keyreset.dispose();
         AccessManager accessManager = new AccessManager();
     }

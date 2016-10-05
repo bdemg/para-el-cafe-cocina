@@ -32,8 +32,8 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="NewPasswordField" max="32767" attributes="0"/>
-                  <Component id="ConfirmNewPasswordField" max="32767" attributes="0"/>
+                  <Component id="newPasswordField" max="32767" attributes="0"/>
+                  <Component id="confirmNewPasswordField" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
                       <Component id="buttonOk" min="-2" max="-2" attributes="0"/>
@@ -50,12 +50,12 @@
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelNewPassword" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="NewPasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="newPasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelConfirmNewPassword" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ConfirmNewPasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="confirmNewPasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Component id="buttonOk" min="-2" max="-2" attributes="0"/>
@@ -70,14 +70,14 @@
         <Property name="text" type="java.lang.String" value="Nueva contrase&#xf1;a:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="NewPasswordField">
+    <Component class="javax.swing.JPasswordField" name="newPasswordField">
     </Component>
     <Component class="javax.swing.JLabel" name="labelConfirmNewPassword">
       <Properties>
         <Property name="text" type="java.lang.String" value="Confirme la contrase&#xf1;a:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="ConfirmNewPasswordField">
+    <Component class="javax.swing.JPasswordField" name="confirmNewPasswordField">
     </Component>
     <Component class="javax.swing.JButton" name="buttonOk">
       <Properties>

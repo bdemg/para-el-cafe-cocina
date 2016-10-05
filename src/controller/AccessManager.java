@@ -1,13 +1,12 @@
 package controller;
 
 import java.awt.event.ActionEvent;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import model.Cryptographer;
+import model.ErrorMessager;
+import model.PasswordCypher;
+import model.PasswordFileDAO;
 import view.AccessDoor;
 
 /**
@@ -17,11 +16,9 @@ import view.AccessDoor;
 public class AccessManager extends Manager {
 
     private final AccessDoor accessDoor;
-    private final Cryptographer cryptographer;
 
     public AccessManager() {
         this.accessDoor = new AccessDoor();
-        this.cryptographer = new Cryptographer();
         this.accessDoor.setResizable(false);
         this.accessDoor.setLocationRelativeTo(null);
         this.accessDoor.setVisible(true);
@@ -46,35 +43,22 @@ public class AccessManager extends Manager {
     }
 
     private void enterAccessDoor() {
-        if (validateAccessKey()) {
+        if (isAccessKey()) {
             // Se accede al programa.
         } else {
-            String errorMessage = "(Error) Contraseña inválida.";
-            this.showErrorMessage(errorMessage);
+            ErrorMessager errorMessager = ErrorMessager.getInstance();
+            errorMessager.showErrorMessage(errorMessager.INPUT_PASSWORD_ERROR);
+            this.accessDoor.clearFields();
         }
     }
 
-    private boolean validateAccessKey() {
-        try {
-            FileReader file = new FileReader("pecc.lo");
-            Scanner scanner = new Scanner(file);
-            String message = scanner.nextLine();
-            String password = this.cryptographer.decryptMessage(message);
-            String key = this.accessDoor.getPasswordField().getText();
-            if (password.compareTo(key) == 0) {
-                return true;
-            }
-        } catch (FileNotFoundException ex) {
-            String errorMessage = "(Error) No se encontró el archivo. Consulte con el Ingeniero.";
-            this.showErrorMessage(errorMessage);
-        }
-        return false;
-    }
-
-    private void showErrorMessage(String errorMessage) {
-        JFrame errorFrame = new JFrame();
-        String errorTitle = "¡Error!";
-        JOptionPane.showMessageDialog(errorFrame, errorMessage, errorTitle, JOptionPane.ERROR_MESSAGE);
+    private boolean isAccessKey() {
+        PasswordFileDAO passwordFileDAO = PasswordFileDAO.getInstance();
+        String supposedPassword = passwordFileDAO.readPassword();
+        PasswordCypher passwordCypher = PasswordCypher.getInstance();
+        String password = passwordCypher.decryptPassword(supposedPassword);
+        String key = this.accessDoor.getPasswordField().getText();
+        return (password.compareTo(key) == 0);
     }
 
     private String askSecurityQuestion() {
@@ -92,8 +76,8 @@ public class AccessManager extends Manager {
             this.accessDoor.dispose();
             PasswordManager passwordManager = new PasswordManager();
         } else {
-            String errorMessage = "(Error) No es la respuesta correcta.";
-            this.showErrorMessage(errorMessage);
+            ErrorMessager errorMessager = ErrorMessager.getInstance();
+            errorMessager.showErrorMessage(errorMessager.SECURITY_QUESTION_ERROR);
         }
     }
 
