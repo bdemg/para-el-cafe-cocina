@@ -16,7 +16,9 @@ import view.OrdersBoard;
  * @author jorge
  */
 public final class OrdersManager extends Manager {
+    
     private final OrdersBoard ordersBoard;
+    
     
     public OrdersManager() {
         this.ordersBoard = new OrdersBoard();
@@ -27,20 +29,27 @@ public final class OrdersManager extends Manager {
     
     
     @Override
-    public void actionPerformed(ActionEvent event) {
+    public void actionPerformed(
+            ActionEvent event
+    ) {
+        
         Object eventSource = event.getSource();
         
         if(eventSource == this.ordersBoard.getButtonOk()){
             this.selectOrdersToBake();
         }
     }
+    
 
     @Override
     protected void addActionListeners() {
+        
         this.ordersBoard.getButtonOk().addActionListener(this);
     }
     
+    
     private void selectOrdersToBake() {
+        
         OrdersList orders = this.ordersBoard.getOrdersList();
         
         for(int ordersCount = 0; ordersCount<orders.getRowCount();ordersCount++){

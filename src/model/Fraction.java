@@ -10,64 +10,109 @@ package model;
  * @author Jorge A. Cano
  */
 public class Fraction {
-
-    private int numerator;
-    private int denominator;
+    
     private static final String FRACTIONAL_BAR = "/";
     private static final String BLANK_SPACE = " ";
 
-    public Fraction(int numerator, int denominator) {
+    private int numerator;
+    private int denominator;
+    
+
+    public Fraction(
+            int numerator, 
+            int denominator
+    ) {
+        
         this.numerator = numerator;
+        
         if (!this.isZero(denominator)) {
             this.denominator = denominator;
         }
     }
 
+    
     public int getNumerator() {
+        
         return numerator;
     }
 
+    
     public int getDenominator() {
+        
         return denominator;
     }
 
-    public void setNumerator(int numerator) {
+    
+    public void setNumerator(
+            int numerator
+    ) {
+        
         this.numerator = numerator;
     }
 
-    public void setDenominator(int denominator) {
+    
+    public void setDenominator(
+            int denominator
+    ) {
+        
         if (!this.isZero(denominator)) {
             this.denominator = denominator;
         }
     }
 
+    
     @Override
     public String toString() {
+        
         String fractionRepresentation;
-        if (this.isProperFraction()) {
+        
+        if ( this.isProperFraction() ) {
             fractionRepresentation = this.numerator + Fraction.FRACTIONAL_BAR +
                     this.denominator;
-        } else if (this.isInteger()) {
-            fractionRepresentation = String.valueOf( (int) this.numerator /
-                    this.denominator );
+            
+        } else if ( this.isWholeNumber() ) {
+            fractionRepresentation = String.valueOf( this.wholeNumber() );
+            
         } else {
-            fractionRepresentation = String.valueOf( (int) this.numerator / this.denominator ) +
-                    Fraction.BLANK_SPACE + ( this.numerator % this.denominator ) +
+            fractionRepresentation = this.wholeNumber()  +
+                    Fraction.BLANK_SPACE + this.reminderNumerator() +
                     Fraction.FRACTIONAL_BAR + this.denominator;
+            
         }
+        
         return fractionRepresentation;
     }
 
+    
     private boolean isProperFraction() {
+        
         return this.numerator < this.denominator;
     }
 
-    private boolean isInteger() {
+    
+    private boolean isWholeNumber() {
+        
         return (this.numerator % this.denominator) == 0;
     }
 
-    private boolean isZero(int denominator) {
+    
+    private int wholeNumber() {
+        
+         return this.numerator / this.denominator;
+    }
+    
+    
+    private int reminderNumerator() {
+        
+        return this.numerator % this.denominator;
+    }
+    
+    
+    private boolean isZero(
+            int denominator
+    ) {
+        
         return denominator == 0;
     }
-
+    
 }

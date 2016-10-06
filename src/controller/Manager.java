@@ -15,6 +15,10 @@ import java.awt.event.ActionListener;
 public abstract class Manager implements ActionListener{
 
     @Override
-    public abstract void actionPerformed(ActionEvent e);
+    public abstract void actionPerformed(
+            ActionEvent e
+    );
+    
+    
     protected abstract void addActionListeners();
 }

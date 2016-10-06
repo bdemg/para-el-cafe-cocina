@@ -10,25 +10,39 @@ package model;
  * @author Jorge A. Cano
  */
 public class Order {
+    
     private final String productName;
     private final int productQuantity;
     private final String dueDate;
 
-    public Order(String productNames, int productQuantity, String dueDate) {
+    
+    public Order(
+            String productNames,
+            int productQuantity,
+            String dueDate
+    ) {
+        
         this.productName = productNames;
         this.productQuantity = productQuantity;
         this.dueDate = dueDate;
     }
 
+    
     public String getProductName() {
+        
         return productName;
     }
 
+    
     public int getProductQuantity() {
+        
         return productQuantity;
     }
 
+    
     public String getDueDate() {
+        
         return dueDate;
     }
+    
 }

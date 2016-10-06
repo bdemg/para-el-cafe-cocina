@@ -2,9 +2,9 @@ package model.recipe;
 
 public class Units {
     
-    static String GRAM = "gr.";
-    static String KILOGRAM = "kg.";
-    static String LITERS = "lt.";
-    static String MILLILITERS = "mlt.";
+    static final String GRAM = "gr.";
+    static final String KILOGRAM = "kg.";
+    static final String LITERS = "lt.";
+    static final String MILLILITERS = "mlt.";
     
 }

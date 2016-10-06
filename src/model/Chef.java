@@ -15,15 +15,21 @@ public class Chef {
     
     private static Chef instance = new Chef();
     
+    
     private Chef(){
         ;
     }
     
+    
     public static Chef getInstance(){
+        
         return instance;
     }
 
-    public void createIngredientsList(Order inputOrder) {
+    public void createIngredientsList(
+            Order inputOrder
+    ) {
+        
         Cookbook cookbook = Cookbook.getInstance();
         Recipe recipe = cookbook.getRecipe(inputOrder.getProductName());
         
@@ -35,22 +41,32 @@ public class Chef {
         //new IngredientsListManager(ingredientList);
     }
 
-    private Object[][] adjustIngredientsQuantity(int inputProductQuantity, Object[][] modIngredients) {
+    private Object[][] adjustIngredientsQuantity(
+            int inputProductQuantity,
+            Object[][] modIngredients
+    ) {
+        
         for (Object[] modIngredient : modIngredients) {
             
-            if (ingredientQuantityIsInteger(modIngredient[Cookbook.INGREDIENT_QUANTITY])) {
-                modIngredient[Cookbook.INGREDIENT_QUANTITY] = ((int) modIngredient[Cookbook.INGREDIENT_QUANTITY] * inputProductQuantity);
+            if (isInteger(modIngredient[Cookbook.INGREDIENT_QUANTITY])) {
+                modIngredient[Cookbook.INGREDIENT_QUANTITY] = 
+                        ((int) modIngredient[Cookbook.INGREDIENT_QUANTITY] *
+                        inputProductQuantity);
                 
             } else {
                 Fraction ingredientQuantity = (Fraction) modIngredient[Cookbook.INGREDIENT_QUANTITY];
-                ingredientQuantity.setNumerator(ingredientQuantity.getNumerator() * inputProductQuantity);
+                ingredientQuantity.setNumerator(ingredientQuantity.getNumerator() *
+                        inputProductQuantity);
                 modIngredient[Cookbook.INGREDIENT_QUANTITY] = ingredientQuantity;
             }
         }
         return modIngredients;
     }
 
-    private boolean ingredientQuantityIsInteger(Object inputIngredientQuantity) {
+    private boolean isInteger(
+            Object inputIngredientQuantity
+    ) {
+        
         return inputIngredientQuantity instanceof Integer;
     }
 }

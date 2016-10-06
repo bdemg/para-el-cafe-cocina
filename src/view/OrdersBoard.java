@@ -39,7 +39,7 @@ public class OrdersBoard extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Producción");
 
-        tableProduction.setModel(new model.OrdersList(0));
+        tableProduction.setModel( new model.OrdersList(0));
         tableProduction.setRowSelectionAllowed(false);
         jScrollPane1.setViewportView(tableProduction);
 
@@ -49,20 +49,16 @@ public class OrdersBoard extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(463, Short.MAX_VALUE)
                 .addComponent(buttonOk)
                 .addContainerGap())
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                 .addGap(8, 8, 8)
                 .addComponent(buttonOk)
                 .addContainerGap())
@@ -99,9 +95,6 @@ public class OrdersBoard extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 OrdersBoard view = new OrdersBoard();
-                OrdersList demoTable = view.getOrdersList();
-                Object[] data = {"Pastel de Naranja", 3, "13/10/2016", false};
-                demoTable.addRow(data);
                 view.setVisible(true);
             }
         });
@@ -113,12 +106,19 @@ public class OrdersBoard extends javax.swing.JFrame {
     private javax.swing.JTable tableProduction;
     // End of variables declaration//GEN-END:variables
 
+    
     public JButton getButtonOk() {
         return buttonOk;
     }
 
+    
     public OrdersList getOrdersList() {
         return (OrdersList) this.tableProduction.getModel();
+    }
+    
+    
+    public void setOrdersList(OrdersList inputOrdersList){
+        this.tableProduction.setModel(inputOrdersList);
     }
 
 }
