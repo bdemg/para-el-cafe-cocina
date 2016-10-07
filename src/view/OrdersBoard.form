@@ -25,8 +25,8 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="463" max="32767" attributes="0"/>
-              <Component id="buttonOk" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="401" max="32767" attributes="0"/>
+              <Component id="ShowIngredientsButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
@@ -37,7 +37,7 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="jScrollPane1" pref="322" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-              <Component id="buttonOk" min="-2" max="-2" attributes="0"/>
+              <Component id="ShowIngredientsButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -67,9 +67,9 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="buttonOk">
+    <Component class="javax.swing.JButton" name="ShowIngredientsButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Aceptar"/>
+        <Property name="text" type="java.lang.String" value="Mostrar Ingredientes"/>
       </Properties>
     </Component>
   </SubComponents>

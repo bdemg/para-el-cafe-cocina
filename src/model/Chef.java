@@ -31,14 +31,14 @@ public class Chef {
     ) {
         
         Cookbook cookbook = Cookbook.getInstance();
-        Recipe recipe = cookbook.getRecipe(inputOrder.getProductName());
+        Recipe recipe = cookbook.getRecipe( inputOrder.getProductName() );
         
         Object[][] unadjustedIngredients = recipe.getIngredients();
-        Object[][] adjustedIngredients = this.adjustIngredientsQuantity(inputOrder.getProductQuantity(),
-                unadjustedIngredients);
-        IngredientsList ingredientsList = new IngredientsList(adjustedIngredients);
+        Object[][] adjustedIngredients = this.adjustIngredientsQuantity( inputOrder.getProductQuantity(),
+                unadjustedIngredients );
+        IngredientsList ingredientsList = new IngredientsList( adjustedIngredients );
         
-        //new IngredientsListManager(ingredientList);
+        //new IngredientsListManager( ingredientList );
     }
 
     private Object[][] adjustIngredientsQuantity(
@@ -46,17 +46,18 @@ public class Chef {
             Object[][] modIngredients
     ) {
         
-        for (Object[] modIngredient : modIngredients) {
+        for ( Object[] modIngredient : modIngredients ) {
             
-            if (isInteger(modIngredient[Cookbook.INGREDIENT_QUANTITY])) {
-                modIngredient[Cookbook.INGREDIENT_QUANTITY] = 
-                        ((int) modIngredient[Cookbook.INGREDIENT_QUANTITY] *
-                        inputProductQuantity);
+            if ( isInteger( modIngredient[ Cookbook.INGREDIENT_QUANTITY ] ) ) {
+                modIngredient[ Cookbook.INGREDIENT_QUANTITY ] = 
+                        ( ( int ) modIngredient[ Cookbook.INGREDIENT_QUANTITY ] *
+                        inputProductQuantity );
                 
             } else {
-                Fraction ingredientQuantity = (Fraction) modIngredient[Cookbook.INGREDIENT_QUANTITY];
+                Fraction ingredientQuantity = ( Fraction ) modIngredient[ Cookbook.INGREDIENT_QUANTITY ];
                 ingredientQuantity.setNumerator(ingredientQuantity.getNumerator() *
                         inputProductQuantity);
+                
                 modIngredient[Cookbook.INGREDIENT_QUANTITY] = ingredientQuantity;
             }
         }

@@ -34,7 +34,7 @@ public class OrdersBoard extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProduction = new javax.swing.JTable();
-        buttonOk = new javax.swing.JButton();
+        ShowIngredientsButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Producción");
@@ -43,15 +43,15 @@ public class OrdersBoard extends javax.swing.JFrame {
         tableProduction.setRowSelectionAllowed(false);
         jScrollPane1.setViewportView(tableProduction);
 
-        buttonOk.setText("Aceptar");
+        ShowIngredientsButton.setText("Mostrar Ingredientes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(463, Short.MAX_VALUE)
-                .addComponent(buttonOk)
+                .addContainerGap(401, Short.MAX_VALUE)
+                .addComponent(ShowIngredientsButton)
                 .addContainerGap())
             .addComponent(jScrollPane1)
         );
@@ -60,7 +60,7 @@ public class OrdersBoard extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                 .addGap(8, 8, 8)
-                .addComponent(buttonOk)
+                .addComponent(ShowIngredientsButton)
                 .addContainerGap())
         );
 
@@ -101,14 +101,14 @@ public class OrdersBoard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonOk;
+    private javax.swing.JButton ShowIngredientsButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableProduction;
     // End of variables declaration//GEN-END:variables
 
     
-    public JButton getButtonOk() {
-        return buttonOk;
+    public JButton getShowIngredientsButton() {
+        return ShowIngredientsButton;
     }
 
     

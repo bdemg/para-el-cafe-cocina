@@ -22,7 +22,7 @@ public final class OrdersManager extends Manager {
     
     public OrdersManager() {
         this.ordersBoard = new OrdersBoard();
-        this.ordersBoard.setVisible(true);
+        this.ordersBoard.setVisible( true );
         
         this.addActionListeners();
     }
@@ -30,21 +30,29 @@ public final class OrdersManager extends Manager {
     
     @Override
     public void actionPerformed(
-            ActionEvent event
+            ActionEvent inputEvent
     ) {
         
-        Object eventSource = event.getSource();
+        Object eventSource = inputEvent.getSource();
         
-        if(eventSource == this.ordersBoard.getButtonOk()){
+        if( this.isSelectingOrders( eventSource ) ){
             this.selectOrdersToBake();
         }
+    }
+    
+    
+    private boolean isSelectingOrders(
+            Object inputEventSource
+    ) {
+        
+        return inputEventSource == this.ordersBoard.getShowIngredientsButton();
     }
     
 
     @Override
     protected void addActionListeners() {
         
-        this.ordersBoard.getButtonOk().addActionListener(this);
+        this.ordersBoard.getShowIngredientsButton().addActionListener( this );
     }
     
     
@@ -52,19 +60,20 @@ public final class OrdersManager extends Manager {
         
         OrdersList orders = this.ordersBoard.getOrdersList();
         
-        for(int ordersCount = 0; ordersCount<orders.getRowCount();ordersCount++){
+        for( int ordersCount = 0; ordersCount < orders.getRowCount(); ordersCount++ ){
             
-            boolean isOrderSelected = (boolean)orders.getValueAt(ordersCount, OrdersList.SELECTION);
-            if(isOrderSelected){
+            boolean isOrderSelected = ( boolean )orders.getValueAt( ordersCount, OrdersList.SELECTION );
+            if( isOrderSelected ){
                 
-                String productName = (String)orders.getValueAt(ordersCount, OrdersList.PRODUCT_NAME);
-                int productQuantity = (int)orders.getValueAt(ordersCount, OrdersList.PRODUCT_QUANTITY);
-                String dueDate = (String)orders.getValueAt(ordersCount, OrdersList.DUE_DATE);
-                Order selectedOrder = new Order(productName, productQuantity, dueDate);
+                String productName = ( String )orders.getValueAt( ordersCount, OrdersList.PRODUCT_NAME );
+                int productQuantity = ( int )orders.getValueAt( ordersCount, OrdersList.PRODUCT_QUANTITY );
+                String dueDate = ( String )orders.getValueAt( ordersCount, OrdersList.DUE_DATE );
+                Order selectedOrder = new Order( productName, productQuantity, dueDate );
                 
-                Chef.getInstance().createIngredientsList(selectedOrder);
+                Chef.getInstance().createIngredientsList( selectedOrder );
             }
         }
     }
+
     
 }
