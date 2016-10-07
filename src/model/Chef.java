@@ -26,9 +26,7 @@ public class Chef {
         return instance;
     }
 
-    public void createIngredientsList(
-            Order inputOrder
-    ) {
+    public void createIngredientsList( Order inputOrder ) {
         
         Cookbook cookbook = Cookbook.getInstance();
         Recipe recipe = cookbook.getRecipe( inputOrder.getProductName() );
@@ -41,32 +39,27 @@ public class Chef {
         //new IngredientsListManager( ingredientList );
     }
 
-    private Object[][] adjustIngredientsQuantity(
-            int inputProductQuantity,
-            Object[][] modIngredients
-    ) {
+    private Object[][] adjustIngredientsQuantity( int inputProductQuantity, Object[][] modIngredients ) {
         
         for ( Object[] modIngredient : modIngredients ) {
             
             if ( isInteger( modIngredient[ Cookbook.INGREDIENT_QUANTITY ] ) ) {
                 modIngredient[ Cookbook.INGREDIENT_QUANTITY ] = 
-                        ( ( int ) modIngredient[ Cookbook.INGREDIENT_QUANTITY ] *
+                        ( (int) modIngredient[ Cookbook.INGREDIENT_QUANTITY ] *
                         inputProductQuantity );
                 
             } else {
-                Fraction ingredientQuantity = ( Fraction ) modIngredient[ Cookbook.INGREDIENT_QUANTITY ];
-                ingredientQuantity.setNumerator(ingredientQuantity.getNumerator() *
-                        inputProductQuantity);
+                Fraction ingredientQuantity = (Fraction) modIngredient[ Cookbook.INGREDIENT_QUANTITY ];
+                ingredientQuantity.setNumerator( ingredientQuantity.getNumerator() *
+                        inputProductQuantity );
                 
-                modIngredient[Cookbook.INGREDIENT_QUANTITY] = ingredientQuantity;
+                modIngredient[ Cookbook.INGREDIENT_QUANTITY ] = ingredientQuantity;
             }
         }
         return modIngredients;
     }
 
-    private boolean isInteger(
-            Object inputIngredientQuantity
-    ) {
+    private boolean isInteger( Object inputIngredientQuantity ) {
         
         return inputIngredientQuantity instanceof Integer;
     }

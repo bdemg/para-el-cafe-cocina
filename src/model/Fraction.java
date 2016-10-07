@@ -18,14 +18,11 @@ public class Fraction {
     private int denominator;
     
 
-    public Fraction(
-            int numerator, 
-            int denominator
-    ) {
+    public Fraction( int numerator, int denominator ) {
         
         this.numerator = numerator;
         
-        if (!this.isZero(denominator)) {
+        if ( !this.isZero( denominator ) ) {
             this.denominator = denominator;
         }
     }
@@ -43,19 +40,15 @@ public class Fraction {
     }
 
     
-    public void setNumerator(
-            int numerator
-    ) {
+    public void setNumerator( int numerator ) {
         
         this.numerator = numerator;
     }
 
     
-    public void setDenominator(
-            int denominator
-    ) {
+    public void setDenominator( int denominator ) {
         
-        if (!this.isZero(denominator)) {
+        if ( !this.isZero( denominator ) ) {
             this.denominator = denominator;
         }
     }
@@ -108,9 +101,7 @@ public class Fraction {
     }
     
     
-    private boolean isZero(
-            int denominator
-    ) {
+    private boolean isZero( int denominator ) {
         
         return denominator == 0;
     }

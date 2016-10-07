@@ -117,8 +117,8 @@ public class OrdersBoard extends javax.swing.JFrame {
     }
     
     
-    public void setOrdersList(OrdersList inputOrdersList){
-        this.tableProduction.setModel(inputOrdersList);
+    public void setOrdersList( OrdersList inputOrdersList ){
+        this.tableProduction.setModel( inputOrdersList );
     }
 
 }

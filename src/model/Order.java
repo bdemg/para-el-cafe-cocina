@@ -16,15 +16,15 @@ public class Order {
     private final String dueDate;
 
     
-    public Order(
-            String productNames,
-            int productQuantity,
-            String dueDate
+    public Order( 
+            String inputProductName, 
+            String inputDueDate, 
+            int inputProductQuantity
     ) {
         
-        this.productName = productNames;
-        this.productQuantity = productQuantity;
-        this.dueDate = dueDate;
+        this.productName = inputProductName;
+        this.productQuantity = inputProductQuantity;
+        this.dueDate = inputDueDate;
     }
 
     
