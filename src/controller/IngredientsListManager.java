@@ -3,7 +3,7 @@ package controller;
 import java.awt.event.ActionEvent;
 import view.IngredientsSheet;
 
-public final class IngredientsListManager extends Manager {
+public final class IngredientsListManager extends Controller {
 
     private String[][] ingredientList;
     private final IngredientsSheet VIEW;

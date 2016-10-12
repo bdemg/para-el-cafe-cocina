@@ -7,11 +7,11 @@ import model.PasswordCypher;
 import model.PasswordFileDAO;
 import view.KeyReset;
 
-public class PasswordManager extends Manager {
+public class PasswordManager extends Controller {
 
     private final KeyReset keyreset;
-    
-    private final String EMPTY_INPUT = "";
+
+    private final String EMPTY = "";
 
     public PasswordManager() {
         this.keyreset = new KeyReset();
@@ -25,14 +25,7 @@ public class PasswordManager extends Manager {
     public void actionPerformed(ActionEvent event) {
         Object eventSource = event.getSource();
         if (eventSource == this.keyreset.getButtonOk()) {
-            if (arePasswordsMatching()) {
-                this.storeNewPassword();
-                this.callAccessManager();
-            } else {
-                ErrorMessager errorMessager = ErrorMessager.getInstance();
-                errorMessager.showErrorMessage(errorMessager.INPUT_PASSWORD_ERROR);
-                this.keyreset.clearFields();
-            }
+            this.validateNewPassword();
         }
     }
 
@@ -41,24 +34,33 @@ public class PasswordManager extends Manager {
         this.keyreset.getButtonOk().addActionListener(this);
     }
 
+    private void validateNewPassword() {
+        if (arePasswordsMatching()) {
+            this.storeNewPassword();
+            this.callAccessManager();
+        } else {
+            ErrorMessager errorMessager = ErrorMessager.callErrorMessager();
+            errorMessager.showErrorMessage(errorMessager.INPUT_PASSWORD_ERROR);
+            this.keyreset.clearFields();
+        }
+    }
+
     private void storeNewPassword() {
         String newPassword = this.keyreset.getNewPasswordField().getText();
-        PasswordCypher passwordCypher = PasswordCypher.getInstance();
-        String cryptedPassword = passwordCypher.encryptPassword(newPassword);
-        PasswordFileDAO passwordFileDAO = PasswordFileDAO.getInstance();
-        passwordFileDAO.writePassword(cryptedPassword);
+        PasswordCypher passwordCypher = PasswordCypher.callPasswordCypher();
+        String encryptedPassword = passwordCypher.encryptPassword(newPassword);
+        PasswordFileDAO passwordFileDAO = PasswordFileDAO.getPasswordFileDAO();
+        passwordFileDAO.storePassword(encryptedPassword);
     }
 
     private boolean arePasswordsMatching() {
         String newPassword = this.keyreset.getNewPasswordField().getText();
-        String confirmNewPassword = 
-                this.keyreset.getConfirmNewPasswordField().getText();
-        boolean isNullEntry = (
-                (newPassword.equals(this.EMPTY_INPUT)) &&
-                (confirmNewPassword.equals(this.EMPTY_INPUT))
-                );
-        boolean areEqualPasswords = (newPassword.equals(confirmNewPassword));
-        return (!isNullEntry && areEqualPasswords);
+        String confirmedNewPassword
+                = this.keyreset.getConfirmNewPasswordField().getText();
+        boolean isEntryBlank = ((newPassword.equals(this.EMPTY))
+                && (confirmedNewPassword.equals(this.EMPTY)));
+        boolean areEqualPasswords = ( newPassword.equals(confirmedNewPassword));
+        return ( !isEntryBlank && areEqualPasswords );
     }
 
     private void callAccessManager() {

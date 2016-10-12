@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 public class IngredientsList extends DefaultTableModel{
@@ -23,17 +22,22 @@ public class IngredientsList extends DefaultTableModel{
     
     @Override
     public Class<?> getColumnClass(int inputColumnIndex) {
+        
         Class columnClass = String.class;
         switch (inputColumnIndex) {
-            case 0:
+            
+            case IngredientsList.INGREDIENT_NAME:
                 columnClass = String.class;
                 break;
-            case 1:
+                
+            case IngredientsList.INGREDIENT_QUANTITY:
                 columnClass = Integer.class;
                 break;
-            case 2:
+                
+            case IngredientsList.INGREDIENT_UNIT:
                 columnClass = String.class;
                 break;
+                
             default:
                 break;
         }

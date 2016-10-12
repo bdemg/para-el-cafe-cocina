@@ -13,7 +13,7 @@ import model.recipe.Recipe;
  */
 public class Chef {
     
-    private static Chef instance = new Chef();
+    private static final Chef chef = new Chef();
     
     
     private Chef(){
@@ -21,9 +21,9 @@ public class Chef {
     }
     
     
-    public static Chef getInstance(){
+    public static Chef callChef(){
         
-        return instance;
+        return chef;
     }
 
     public void createIngredientsList( Order inputOrder ) {
@@ -31,9 +31,9 @@ public class Chef {
         Cookbook cookbook = Cookbook.getInstance();
         Recipe recipe = cookbook.getRecipe( inputOrder.getProductName() );
         
-        Object[][] unadjustedIngredients = recipe.getIngredients();
+        Object[][] rawIngredients = recipe.getIngredients();
         Object[][] adjustedIngredients = this.adjustIngredientsQuantity( inputOrder.getProductQuantity(),
-                unadjustedIngredients );
+                rawIngredients );
         IngredientsList ingredientsList = new IngredientsList( adjustedIngredients );
         
         //new IngredientsListManager( ingredientList );
@@ -41,19 +41,20 @@ public class Chef {
 
     private Object[][] adjustIngredientsQuantity( int inputProductQuantity, Object[][] modIngredients ) {
         
-        for ( Object[] modIngredient : modIngredients ) {
+        for ( Object[] ingredientDescription : modIngredients ) {
             
-            if ( isInteger( modIngredient[ Cookbook.INGREDIENT_QUANTITY ] ) ) {
-                modIngredient[ Cookbook.INGREDIENT_QUANTITY ] = 
-                        ( (int) modIngredient[ Cookbook.INGREDIENT_QUANTITY ] *
+            if ( isInteger( ingredientDescription[ Cookbook.INGREDIENT_QUANTITY ] ) ) {
+                ingredientDescription[ Cookbook.INGREDIENT_QUANTITY ] = 
+                        ( (int) ingredientDescription[ Cookbook.INGREDIENT_QUANTITY ] *
                         inputProductQuantity );
                 
             } else {
-                Fraction ingredientQuantity = (Fraction) modIngredient[ Cookbook.INGREDIENT_QUANTITY ];
+                Fraction ingredientQuantity = 
+                        (Fraction) ingredientDescription[ Cookbook.INGREDIENT_QUANTITY ];
                 ingredientQuantity.setNumerator( ingredientQuantity.getNumerator() *
                         inputProductQuantity );
                 
-                modIngredient[ Cookbook.INGREDIENT_QUANTITY ] = ingredientQuantity;
+                ingredientDescription[ Cookbook.INGREDIENT_QUANTITY ] = ingredientQuantity;
             }
         }
         return modIngredients;

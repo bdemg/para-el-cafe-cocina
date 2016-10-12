@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
  *
  * @author Jorge A. Cano
  */
-public abstract class Manager implements ActionListener{
+public abstract class Controller implements ActionListener{
 
     @Override
     public abstract void actionPerformed( ActionEvent e );

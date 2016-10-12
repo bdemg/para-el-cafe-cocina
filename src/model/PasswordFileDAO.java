@@ -11,37 +11,38 @@ import java.util.Scanner;
  */
 public class PasswordFileDAO {
 
-    private static final PasswordFileDAO instance = new PasswordFileDAO();
+    private static final PasswordFileDAO passwordFileDAO = new PasswordFileDAO();
 
     private final String PASSWORD_FILE = "pecc.lo";
 
     private PasswordFileDAO() {
+        ;
     }
 
-    public static PasswordFileDAO getInstance() {
-        return instance;
+    public static PasswordFileDAO getPasswordFileDAO() {
+        return passwordFileDAO;
     }
 
-    public String readPassword() {
+    public String getStoredPassword() {
         try {
             FileReader ReadFile = new FileReader(PASSWORD_FILE);
             Scanner FileScanner = new Scanner(ReadFile);
             String password = FileScanner.nextLine();
             return password;
         } catch (FileNotFoundException ex) {
-            ErrorMessager errorMessager = ErrorMessager.getInstance();
+            ErrorMessager errorMessager = ErrorMessager.callErrorMessager();
             errorMessager.showErrorMessage(errorMessager.FILE_ERROR);
         }
         return null;
     }
 
-    public void writePassword(String password) {
+    public void storePassword(String password) {
         try {
             PrintWriter writeFile = new PrintWriter(PASSWORD_FILE);
             writeFile.println(password);
             writeFile.close();
         } catch (FileNotFoundException ex) {
-            ErrorMessager errorMessager = ErrorMessager.getInstance();
+            ErrorMessager errorMessager = ErrorMessager.callErrorMessager();
             errorMessager.showErrorMessage(errorMessager.FILE_ERROR);
         }
     }

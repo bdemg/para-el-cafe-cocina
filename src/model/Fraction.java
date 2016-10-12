@@ -64,10 +64,10 @@ public class Fraction {
                     this.denominator;
             
         } else if ( this.isWholeNumber() ) {
-            fractionRepresentation = String.valueOf( this.wholeNumber() );
+            fractionRepresentation = String.valueOf( this.getWholeNumber() );
             
         } else {
-            fractionRepresentation = this.wholeNumber()  +
+            fractionRepresentation = this.getWholeNumber()  +
                     Fraction.BLANK_SPACE + this.reminderNumerator() +
                     Fraction.FRACTIONAL_BAR + this.denominator;
             
@@ -89,7 +89,7 @@ public class Fraction {
     }
 
     
-    private int wholeNumber() {
+    private int getWholeNumber() {
         
          return this.numerator / this.denominator;
     }

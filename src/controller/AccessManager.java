@@ -13,7 +13,7 @@ import view.AccessDoor;
  *
  * @author Antonio Soto
  */
-public class AccessManager extends Manager {
+public class AccessManager extends Controller {
 
     private final AccessDoor accessDoor;
     
@@ -22,6 +22,7 @@ public class AccessManager extends Manager {
     private final String SECURITY_QUESTION_ANSWER = "nombre";
 
     public AccessManager() {
+        
         this.accessDoor = new AccessDoor();
         this.accessDoor.setResizable(false);
         this.accessDoor.setLocationRelativeTo(null);
@@ -42,27 +43,29 @@ public class AccessManager extends Manager {
 
     @Override
     protected void addActionListeners() {
+        
         this.accessDoor.getButtonEnterDoor().addActionListener(this);
         this.accessDoor.getButtonForgotPassword().addActionListener(this);
     }
 
     private void enterAccessDoor() {
         if (isAccessKey()) {
-            // Se accede al programa.
+            new OrdersManager();
+            this.accessDoor.dispose();
         } else {
-            ErrorMessager errorMessager = ErrorMessager.getInstance();
+            ErrorMessager errorMessager = ErrorMessager.callErrorMessager();
             errorMessager.showErrorMessage(errorMessager.INPUT_PASSWORD_ERROR);
             this.accessDoor.clearFields();
         }
     }
 
     private boolean isAccessKey() {
-        PasswordFileDAO passwordFileDAO = PasswordFileDAO.getInstance();
-        String supposedPassword = passwordFileDAO.readPassword();
-        PasswordCypher passwordCypher = PasswordCypher.getInstance();
-        String password = passwordCypher.decryptPassword(supposedPassword);
-        String key = this.accessDoor.getPasswordField().getText();
-        return (password.equals(key));
+        PasswordFileDAO passwordFileDAO = PasswordFileDAO.getPasswordFileDAO();
+        String encryptedPassword = passwordFileDAO.getStoredPassword();
+        PasswordCypher passwordCypher = PasswordCypher.callPasswordCypher();
+        String storedPassword = passwordCypher.decryptPassword(encryptedPassword);
+        String enteredPassword = this.accessDoor.getPasswordField().getText();
+        return (storedPassword.equals(enteredPassword));
     }
 
     private String askSecurityQuestion() {
@@ -77,16 +80,16 @@ public class AccessManager extends Manager {
         return questionAnswer;
     }
 
-    private void callPasswordManager(String questionAnswer) {
-        boolean isAnswerCorrect = (
-                questionAnswer.equals(this.SECURITY_QUESTION_ANSWER)
-                );
-        if (isAnswerCorrect) {
+    private void callPasswordManager( String questionAnswer ) {
+        
+        boolean isAnswerCorrect = ( questionAnswer.equals( this.SECURITY_QUESTION_ANSWER ) );
+        if ( isAnswerCorrect ) {
             
             this.accessDoor.dispose();
             PasswordManager passwordManager = new PasswordManager();
         } else {
-            ErrorMessager errorMessager = ErrorMessager.getInstance();
+            
+            ErrorMessager errorMessager = ErrorMessager.callErrorMessager();
             errorMessager.showErrorMessage(errorMessager.SECURITY_QUESTION_ERROR);
         }
     }

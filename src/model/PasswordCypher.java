@@ -9,12 +9,14 @@ import java.util.Base64;
  */
 public class PasswordCypher {
     
-    private static final PasswordCypher instance = new PasswordCypher();
+    private static final PasswordCypher passwordCypher = new PasswordCypher();
     
-    private PasswordCypher(){}
+    private PasswordCypher(){
+        ;
+    }
     
-    public static PasswordCypher getInstance(){
-        return instance;
+    public static PasswordCypher callPasswordCypher(){
+        return passwordCypher;
     }
 
     public String encryptPassword(String inputPassword) {

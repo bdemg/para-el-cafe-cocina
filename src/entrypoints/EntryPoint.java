@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package entrypoints;
 
 import controller.AccessManager;
 import javax.swing.UIManager;
@@ -13,7 +13,7 @@ import view.OrdersBoard;
  *
  * @author José
  */
-public class Test {
+public class EntryPoint {
 
     public static void main(String[] args) {
         setSystemLookAndFeel();

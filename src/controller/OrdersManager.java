@@ -15,14 +15,17 @@ import view.OrdersBoard;
  *
  * @author jorge
  */
-public final class OrdersManager extends Manager {
+public final class OrdersManager extends Controller {
     
     private final OrdersBoard ordersBoard;
     
     
     public OrdersManager() {
+        
         this.ordersBoard = new OrdersBoard();
         this.ordersBoard.setVisible( true );
+        this.ordersBoard.setResizable(false);
+        this.ordersBoard.setLocationRelativeTo(null);
         
         this.addActionListeners();
         
@@ -57,19 +60,27 @@ public final class OrdersManager extends Manager {
     
     private void selectOrdersToBake() {
         
-        OrdersList orders = this.ordersBoard.getOrdersList();
+        OrdersList ordersList = this.ordersBoard.getOrdersList();
         
-        for( int ordersCount = 0; ordersCount < orders.getRowCount(); ordersCount++ ){
+        for( int ordersCount = 0; ordersCount < ordersList.getRowCount(); ordersCount++ ){
             
-            boolean isOrderSelected = (boolean) orders.getValueAt( ordersCount, OrdersList.SELECTION );
+            boolean isOrderSelected = (boolean) ordersList.getValueAt( ordersCount,
+                    OrdersList.SELECTION );
             if( isOrderSelected ){
                 
-                String productName = (String) orders.getValueAt( ordersCount, OrdersList.PRODUCT_NAME );
-                int productQuantity = (int) orders.getValueAt( ordersCount, OrdersList.PRODUCT_QUANTITY );
-                String dueDate = (String) orders.getValueAt( ordersCount, OrdersList.DUE_DATE );
-                Order selectedOrder = new Order( productName, dueDate, productQuantity );
+                String productName = (String) ordersList.getValueAt( ordersCount,
+                    OrdersList.PRODUCT_NAME );
+                int productQuantity = (int) ordersList.getValueAt( ordersCount,
+                    OrdersList.PRODUCT_QUANTITY );
+                String dueDate = (String) ordersList.getValueAt( ordersCount,
+                    OrdersList.DUE_DATE );
+                Order selectedOrder = new Order( 
+                    productName,
+                    dueDate,
+                    productQuantity 
+                );
                 
-                Chef.getInstance().createIngredientsList( selectedOrder );
+                Chef.callChef().createIngredientsList( selectedOrder );
             }
         }
     }
