@@ -32,20 +32,24 @@ public class AccessManager extends Controller {
 
     @Override
     public void actionPerformed(ActionEvent event) {
+        
         Object eventSource = event.getSource();
-        if (isAccessingDoor ( eventSource ) ) {
+        if ( isAccessingDoor ( eventSource ) ) {
             this.enterAccessDoor();
-        } else if (isPasswordForgoten ( eventSource ) ) {
+            
+        } else if ( isPasswordForgoten ( eventSource ) ) {
             String questionAnswer = this.askSecurityQuestion();
             this.callPasswordManager(questionAnswer);
         }
     }
     
     private boolean isAccessingDoor ( Object eventSource ) {
+        
         return eventSource == this.accessDoor.getButtonEnterDoor();
     }
     
     private boolean isPasswordForgoten ( Object eventSource ) {
+        
         return eventSource == this.accessDoor.getButtonForgotPassword();
     }
 
@@ -57,33 +61,37 @@ public class AccessManager extends Controller {
     }
 
     private void enterAccessDoor() {
-        if (isAccessKey()) {
+        
+        if ( isAccessKey() ) {
             new OrdersManager();
             this.accessDoor.dispose();
+            
         } else {
             ErrorMessager errorMessager = ErrorMessager.callErrorMessager();
-            errorMessager.showErrorMessage(errorMessager.INPUT_PASSWORD_ERROR);
+            errorMessager.showErrorMessage( errorMessager.INPUT_PASSWORD_ERROR );
             this.accessDoor.clearFields();
         }
     }
 
     private boolean isAccessKey() {
+        
         PasswordFileDAO passwordFileDAO = PasswordFileDAO.getPasswordFileDAO();
         String encryptedPassword = passwordFileDAO.getStoredPassword();
         PasswordCypher passwordCypher = PasswordCypher.callPasswordCypher();
-        String storedPassword = passwordCypher.decryptPassword(encryptedPassword);
+        String storedPassword = passwordCypher.decryptPassword( encryptedPassword );
         String enteredPassword = this.accessDoor.getPasswordField().getText();
-        return (storedPassword.equals(enteredPassword));
+        return ( storedPassword.equals( enteredPassword ) );
     }
 
     private String askSecurityQuestion() {
+        
         JFrame questionFrame = new JFrame();
         String questionAnswer = 
                 JOptionPane.showInputDialog(
-                        questionFrame,
-                        this.SECURITY_QUESTION,
-                        this.SECURITY_QUESTION_TITLE,
-                        JOptionPane.QUESTION_MESSAGE
+                    questionFrame,
+                    this.SECURITY_QUESTION,
+                    this.SECURITY_QUESTION_TITLE,
+                    JOptionPane.QUESTION_MESSAGE
                 );
         return questionAnswer;
     }
