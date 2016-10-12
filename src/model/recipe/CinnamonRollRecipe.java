@@ -57,14 +57,14 @@ public class CinnamonRollRecipe implements Recipe{
         outputRecipe[ this.SUGAR_DESCRIPTION ][ IngredientsList.INGREDIENT_QUANTITY ] = 
                 this.SUGAR_QUANTITY;
         outputRecipe[ this.SUGAR_DESCRIPTION ][ IngredientsList.INGREDIENT_UNIT ] = 
-                Units.SPOON;
+                Units.TABLESPOON;
         
         outputRecipe[ this.YEAST_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] = 
                 Ingredients.YEAST;
         outputRecipe[ this.YEAST_DESCRIPTION ][ IngredientsList.INGREDIENT_QUANTITY ] = 
                 this.YEAST_QUANTITY;
         outputRecipe[ this.YEAST_DESCRIPTION ][ IngredientsList.INGREDIENT_UNIT ] = 
-                Units.SMALL_SPOON;
+                Units.TEASPOON;
         
         outputRecipe[ this.EGGS_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] = 
                 Ingredients.EGGS;
@@ -78,14 +78,14 @@ public class CinnamonRollRecipe implements Recipe{
         outputRecipe[ this.VANILLA_DESCRIPTION ][ IngredientsList.INGREDIENT_QUANTITY ] = 
                 this.VANILLA_QUANTITY;
         outputRecipe[ this.VANILLA_DESCRIPTION ][ IngredientsList.INGREDIENT_UNIT ] = 
-                Units.SMALL_SPOON;
+                Units.TEASPOON;
         
         outputRecipe[ this.SALT_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] = 
                 Ingredients.SALT;
         outputRecipe[ this.SALT_DESCRIPTION ][ IngredientsList.INGREDIENT_QUANTITY ] = 
                 this.SALT_QUANTITY;
         outputRecipe[ this.SALT_DESCRIPTION ][ IngredientsList.INGREDIENT_UNIT ] = 
-                Units.SMALL_SPOON;
+                Units.TEASPOON;
         
         outputRecipe[ this.FLOUR_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] = 
                 Ingredients.FLOUR;

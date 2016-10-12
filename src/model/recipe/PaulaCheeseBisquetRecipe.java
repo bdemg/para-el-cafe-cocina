@@ -67,14 +67,14 @@ public class PaulaCheeseBisquetRecipe implements Recipe{
         outputRecipe[ this.PEPPER_DESCRIPTION ][ IngredientsList.INGREDIENT_QUANTITY ] = 
                 this.PEPPER_QUANTITY;
         outputRecipe[ this.PEPPER_DESCRIPTION ][ IngredientsList.INGREDIENT_UNIT ] = 
-                Units.SMALL_SPOON;
+                Units.TEASPOON;
         
         outputRecipe[ this.SALT_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] = 
                 Ingredients.SALT;
         outputRecipe[ this.SALT_DESCRIPTION ][ IngredientsList.INGREDIENT_QUANTITY ] = 
                 this.SALT_QUANTITY;
         outputRecipe[ this.SALT_DESCRIPTION ][ IngredientsList.INGREDIENT_UNIT ] = 
-                Units.SMALL_SPOON;
+                Units.TEASPOON;
         
         outputRecipe[ this.FLOUR_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] = 
                 Ingredients.FLOUR;

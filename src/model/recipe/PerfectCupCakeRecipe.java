@@ -52,7 +52,7 @@ public class PerfectCupCakeRecipe implements Recipe{
         outputRecipe[ this.HONEY_DESCRIPTION ][ IngredientsList.INGREDIENT_QUANTITY ] = 
                 this.HONEY_QUANTITY;
         outputRecipe[ this.HONEY_DESCRIPTION ][ IngredientsList.INGREDIENT_UNIT ] = 
-                Units.SPOON;
+                Units.TABLESPOON;
         
         outputRecipe[ this.SUGAR_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] = 
                 Ingredients.SUGAR;
@@ -80,7 +80,7 @@ public class PerfectCupCakeRecipe implements Recipe{
         outputRecipe[ this.VANILLA_DESCRIPTION ][ IngredientsList.INGREDIENT_QUANTITY ] = 
                 this.VANILLA_QUANTITY;
         outputRecipe[ this.VANILLA_DESCRIPTION ][ IngredientsList.INGREDIENT_UNIT ] = 
-                Units.SMALL_SPOON;
+                Units.TEASPOON;
         
         outputRecipe[ this.SALT_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] = 
                 Ingredients.SALT;

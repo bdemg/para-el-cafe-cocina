@@ -33,12 +33,20 @@ public class AccessManager extends Controller {
     @Override
     public void actionPerformed(ActionEvent event) {
         Object eventSource = event.getSource();
-        if (eventSource == this.accessDoor.getButtonEnterDoor()) {
+        if (isAccessingDoor ( eventSource ) ) {
             this.enterAccessDoor();
-        } else if (eventSource == this.accessDoor.getButtonForgotPassword()) {
+        } else if (isPasswordForgoten ( eventSource ) ) {
             String questionAnswer = this.askSecurityQuestion();
             this.callPasswordManager(questionAnswer);
         }
+    }
+    
+    private boolean isAccessingDoor ( Object eventSource ) {
+        return eventSource == this.accessDoor.getButtonEnterDoor();
+    }
+    
+    private boolean isPasswordForgoten ( Object eventSource ) {
+        return eventSource == this.accessDoor.getButtonForgotPassword();
     }
 
     @Override

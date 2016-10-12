@@ -24,9 +24,13 @@ public class PasswordManager extends Controller {
     @Override
     public void actionPerformed(ActionEvent event) {
         Object eventSource = event.getSource();
-        if (eventSource == this.keyreset.getButtonOk()) {
+        if (isPasswordValid( eventSource )) {
             this.validateNewPassword();
         }
+    }
+    
+    private boolean isPasswordValid ( Object eventSource ) {
+        return eventSource == this.keyreset.getButtonOk() ;
     }
 
     @Override
