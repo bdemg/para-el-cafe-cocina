@@ -29,5 +29,6 @@ public class Ingredients {
     static final String CHEDDAR_CHEESE = "Queso Cheddar";
     static final String MONTERREY_JACK_CHEESE = "Queso Monterrey Jack";
     static final String PEPPER = "Pimienta";
+    static final String HONEY = "Miel";
     
 }
