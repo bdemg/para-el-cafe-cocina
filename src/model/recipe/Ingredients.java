@@ -3,12 +3,13 @@ package model.recipe;
 public class Ingredients {
     
     static final String EGGS = "Huevos";
+    static final String EGG_YOLK = "Claras de Huevo";
     static final String FLOUR = "Harina";
     static final String BUTTER = "Mantequilla";
     static final String SUGAR = "Azucar";
     static final String BAKING_POWDER = "Polvo para hornear";
     static final String ORANGE_JUICE = "Jugo de naranja";
-    static final String SCRATCHES = "Rayadura";
+    static final String ORANGE_ZEST = "Rayadura de naranja";
     static final String LEMON_JUICE = "Jugo de limón";
     static final String WATER = "Agua";
     static final String STABILIZER = "Estabilizador";

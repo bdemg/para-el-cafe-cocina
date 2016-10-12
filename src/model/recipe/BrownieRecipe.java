@@ -34,7 +34,7 @@ public class BrownieRecipe implements Recipe{
     @Override
     public Object[][] getIngredients() {
         
-        Object[][] outputRecipe = new Object[this.TOTAL_INGREDIENTS][3];
+        Object[][] outputRecipe = new Object[this.TOTAL_INGREDIENTS][BrownieRecipe.PROPERTIES];
         
         outputRecipe[ this.BUTTER_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] = 
                 Ingredients.BUTTER;

@@ -111,7 +111,8 @@ public class IngredientsSheet extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IngredientsSheet().setVisible(true);
+                IngredientsSheet view = new IngredientsSheet();
+                view.setVisible(true);
             }
         });
     }

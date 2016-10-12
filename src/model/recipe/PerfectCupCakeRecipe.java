@@ -45,7 +45,7 @@ public class PerfectCupCakeRecipe implements Recipe{
     @Override
     public Object[][] getIngredients() {
         
-        Object[][] outputRecipe = new Object[this.TOTAL_INGREDIENTS][3];
+        Object[][] outputRecipe = new Object[this.TOTAL_INGREDIENTS][PerfectCupCakeRecipe.PROPERTIES];
         
         outputRecipe[ this.HONEY_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] = 
                 Ingredients.HONEY;

@@ -1,6 +1,8 @@
 package controller;
 
 import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
+import model.WarningMessager;
 import view.IngredientsSheet;
 
 public final class IngredientsListManager extends Controller {
@@ -25,9 +27,10 @@ public final class IngredientsListManager extends Controller {
     public void actionPerformed(ActionEvent event) {
         Object eventSource = event.getSource();
         if (isBaking(eventSource)) {
-            //chef.bake();
+            this.orderCompleted();
+            
         } else if (isNotGoingToBake(eventSource)) {
-            //this.scrapIngredientsList();
+            this.scrapIngredientsList();
         }
     }
 
@@ -37,6 +40,18 @@ public final class IngredientsListManager extends Controller {
 
     private boolean isBaking(Object eventSource) {
         return eventSource == this.VIEW.getBakeButton();
+    }
+    
+    private void scrapIngredientsList(){
+        this.VIEW.dispose();
+    }
+    
+    private void orderCompleted(){
+        //se utiliza el DAO para actualizar la BD
+        //implementar cuando se tenga el DAO
+        WarningMessager warningMessager = WarningMessager.callWarningMessager();
+        warningMessager.showWarningMessage(warningMessager.CONFIRM_BAKING_ORDER);
+        this.VIEW.dispose();
     }
 
 }
