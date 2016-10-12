@@ -25,6 +25,9 @@ public final class OrdersManager extends Manager {
         this.ordersBoard.setVisible( true );
         
         this.addActionListeners();
+        
+        Object[][] orders = this.retriveOrders();
+        this.ordersBoard.setOrdersList(new OrdersList(orders));
     }
     
     
@@ -69,6 +72,28 @@ public final class OrdersManager extends Manager {
                 Chef.getInstance().createIngredientsList( selectedOrder );
             }
         }
+    }
+
+    
+    //Actualmente con valores prueba, eventualmente se comunicará con un DAO
+    
+    private Object[][] retriveOrders() {
+        
+        Object[][] orders = new Object[4][3];
+        
+        orders[0][0] = "Brownie";
+        orders[0][1] = 4;
+        orders[0][2] = "12/10/2016 16:75";
+        
+        orders[1][0] = "Rol de canela";
+        orders[1][1] = 6;
+        orders[1][2] = "12/10/2016 16:75";
+        
+        orders[2][0] = "Pay de limón";
+        orders[2][1] = 1;
+        orders[2][2] = "12/10/2016 16:75";
+        
+        return orders;
     }
 
     

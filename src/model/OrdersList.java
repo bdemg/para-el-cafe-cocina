@@ -14,6 +14,10 @@ public class OrdersList extends DefaultTableModel {
     public OrdersList(int inputRowCount) {
         super(OrdersList.COLUMN_TITLES, inputRowCount);
     }
+    
+    public OrdersList(Object[][] orders){
+        super(orders, OrdersList.COLUMN_TITLES);
+    }
 
     @Override
     public Class<?> getColumnClass(int inputColumnIndex) {
