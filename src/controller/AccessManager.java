@@ -16,6 +16,10 @@ import view.AccessDoor;
 public class AccessManager extends Manager {
 
     private final AccessDoor accessDoor;
+    
+    private final String SECURITY_QUESTION = "¿Cuál es su nombre?";
+    private final String SECURITY_QUESTION_TITLE = "Pregunta de Seguridad";
+    private final String SECURITY_QUESTION_ANSWER = "nombre";
 
     public AccessManager() {
         this.accessDoor = new AccessDoor();
@@ -58,21 +62,27 @@ public class AccessManager extends Manager {
         PasswordCypher passwordCypher = PasswordCypher.getInstance();
         String password = passwordCypher.decryptPassword(supposedPassword);
         String key = this.accessDoor.getPasswordField().getText();
-        return (password.compareTo(key) == 0);
+        return (password.equals(key));
     }
 
     private String askSecurityQuestion() {
         JFrame questionFrame = new JFrame();
-        String questionMessage = "¿Cuál es su nombre?";
-        String questionTitle = "Pregunta de Seguridad";
-        String questionAnswer = JOptionPane.showInputDialog(questionFrame,
-                questionMessage, questionTitle, JOptionPane.QUESTION_MESSAGE);
+        String questionAnswer = 
+                JOptionPane.showInputDialog(
+                        questionFrame,
+                        this.SECURITY_QUESTION,
+                        this.SECURITY_QUESTION_TITLE,
+                        JOptionPane.QUESTION_MESSAGE
+                );
         return questionAnswer;
     }
 
     private void callPasswordManager(String questionAnswer) {
-        boolean isAnswerCorrect = (questionAnswer.compareTo("nombre") == 0);
+        boolean isAnswerCorrect = (
+                questionAnswer.equals(this.SECURITY_QUESTION_ANSWER)
+                );
         if (isAnswerCorrect) {
+            
             this.accessDoor.dispose();
             PasswordManager passwordManager = new PasswordManager();
         } else {

@@ -10,6 +10,8 @@ import view.KeyReset;
 public class PasswordManager extends Manager {
 
     private final KeyReset keyreset;
+    
+    private final String EMPTY_INPUT = "";
 
     public PasswordManager() {
         this.keyreset = new KeyReset();
@@ -49,9 +51,13 @@ public class PasswordManager extends Manager {
 
     private boolean arePasswordsMatching() {
         String newPassword = this.keyreset.getNewPasswordField().getText();
-        String confirmNewPassword = this.keyreset.getConfirmNewPasswordField().getText();
-        boolean isNullEntry = ((newPassword.compareTo("") == 0) && (confirmNewPassword.compareTo("") == 0));
-        boolean areEqualPasswords = (newPassword.compareTo(confirmNewPassword) == 0);
+        String confirmNewPassword = 
+                this.keyreset.getConfirmNewPasswordField().getText();
+        boolean isNullEntry = (
+                (newPassword.equals(this.EMPTY_INPUT)) &&
+                (confirmNewPassword.equals(this.EMPTY_INPUT))
+                );
+        boolean areEqualPasswords = (newPassword.equals(confirmNewPassword));
         return (!isNullEntry && areEqualPasswords);
     }
 
