@@ -11,7 +11,7 @@ import model.IngredientsList;
  *
  * @author Jorge A. Cano
  */
-public class PerfectCupCakeRecipie implements Recipe{
+public class PerfectCupCakeRecipe implements Recipe{
     private final int TOTAL_INGREDIENTS = 9;
     
     private final int HONEY_QUANTITY = 2;

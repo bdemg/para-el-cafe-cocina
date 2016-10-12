@@ -12,7 +12,7 @@ import model.IngredientsList;
  *
  * @author Jorge A. Cano
  */
-public class CinnamonRollRecipie implements Recipe{
+public class CinnamonRollRecipe implements Recipe{
     private final int TOTAL_INGREDIENTS = 8;
     
     private final int BUTTER_QUANTITY = 180;
