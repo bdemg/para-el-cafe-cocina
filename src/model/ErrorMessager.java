@@ -17,14 +17,17 @@ public class ErrorMessager {
     
     private final String ERROR_TITLE = "¡Error!";
     
-    private ErrorMessager(){}
+    private ErrorMessager(){
+        ;
+    }
     
     public static ErrorMessager callErrorMessager(){
         
         return errorMessager;
     }
     
-    public void showErrorMessage(String errorMessage){
+    public void showErrorMessage( String errorMessage ){
+        
         JFrame errorFrame = new JFrame();
         JOptionPane.showMessageDialog(
             errorFrame,

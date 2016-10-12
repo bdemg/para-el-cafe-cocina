@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entrypoints;
 
 import controller.AccessManager;
@@ -11,13 +6,14 @@ import view.OrdersBoard;
 
 /**
  *
- * @author José
+ * @author Antonio Soto
  */
 public class EntryPoint {
 
     public static void main(String[] args) {
+        
         setSystemLookAndFeel();
-        AccessManager a = new AccessManager();
+        AccessManager accessManager = new AccessManager();
     }
 
     

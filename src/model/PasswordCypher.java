@@ -16,20 +16,24 @@ public class PasswordCypher {
     }
     
     public static PasswordCypher callPasswordCypher(){
+        
         return passwordCypher;
     }
-
-    public String encryptPassword(String inputPassword) {
+    
+    public String encryptPassword( String inputPassword ) {
+        
         Base64.Encoder PasswordEncoder = Base64.getEncoder();
-        String outputEncryptedPassword = 
-                PasswordEncoder.encodeToString(inputPassword.getBytes(StandardCharsets.UTF_8));
+        String outputEncryptedPassword = PasswordEncoder.encodeToString( 
+            inputPassword.getBytes( StandardCharsets.UTF_8 ) 
+        );
         return outputEncryptedPassword;
     }
 
-    public String decryptPassword(String inputEncryptedPassword) {
+    public String decryptPassword( String inputEncryptedPassword ) {
+        
         Base64.Decoder PasswordDecoder = Base64.getDecoder();
-        byte[] decodedPassword = PasswordDecoder.decode(inputEncryptedPassword);
-        String outputPassword = new String(decodedPassword);
+        byte[] decodedPassword = PasswordDecoder.decode( inputEncryptedPassword );
+        String outputPassword = new String( decodedPassword );
         return outputPassword;
     }
 
