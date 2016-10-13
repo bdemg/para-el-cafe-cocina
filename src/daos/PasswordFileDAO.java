@@ -1,9 +1,10 @@
-package model;
+package daos;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import model.ErrorMessager;
 
 /**
  *

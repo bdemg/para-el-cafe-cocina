@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 
 import model.ErrorMessager;
 import model.PasswordCypher;
-import model.PasswordFileDAO;
+import daos.PasswordFileDAO;
 import view.KeyReset;
 
 public class PasswordManager extends Controller {

@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 import model.ErrorMessager;
 import model.PasswordCypher;
-import model.PasswordFileDAO;
+import daos.PasswordFileDAO;
 import view.AccessDoor;
 
 /**
