@@ -5,6 +5,7 @@
  */
 package model;
 
+import controller.IngredientsListManager;
 import model.recipe.Recipe;
 
 /**
@@ -36,7 +37,7 @@ public class Chef {
                 rawIngredients );
         IngredientsList ingredientsList = new IngredientsList( adjustedIngredients );
         
-        //new IngredientsListManager( ingredientList );
+        new IngredientsListManager( ingredientsList );
     }
 
     private Object[][] adjustIngredientsQuantity( int inputProductQuantity, Object[][] modIngredients ) {

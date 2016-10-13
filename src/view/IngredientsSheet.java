@@ -135,4 +135,8 @@ public class IngredientsSheet extends javax.swing.JFrame {
     public IngredientsList getIngredientsList(){
         return (IngredientsList) this.tableIngredients.getModel();
     }
+    
+    public void setIngredientsList(IngredientsList inputIngredientsList){
+        this.tableIngredients.setModel(inputIngredientsList);
+    }
 }

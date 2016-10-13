@@ -92,25 +92,25 @@ public final class OrdersManager extends Controller {
         
         Object[][] orders = new Object[4][4];
         
-        orders[0][0] = "Brownie";
+        orders[0][0] = "Brownies";
         orders[0][1] = 4;
         orders[0][2] = "12/10/2016 16:75";
-        orders[0][2] = false;
+        orders[0][3] = false;
         
-        orders[1][0] = "Rol de canela";
+        orders[1][0] = "Roles de canela";
         orders[1][1] = 6;
         orders[1][2] = "12/10/2016 16:75";
-        orders[1][2] = false;
+        orders[1][3] = false;
         
-        orders[2][0] = "Pay de limón";
+        orders[2][0] = "Cupcake perfecto";
         orders[2][1] = 1;
         orders[2][2] = "12/10/2016 16:75";
-        orders[2][2] = false;
+        orders[2][3] = false;
         
-        orders[3][0] = "Pay de queso";
+        orders[3][0] = "Pastel de Fresas";
         orders[3][1] = 1;
         orders[3][2] = "12/10/2016 16:75";
-        orders[3][2] = false;
+        orders[3][3] = false;
         
         return orders;
     }

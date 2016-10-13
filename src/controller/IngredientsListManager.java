@@ -4,16 +4,17 @@ import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import model.WarningMessager;
 import view.IngredientsSheet;
+import model.IngredientsList;
 
 public final class IngredientsListManager extends Controller {
 
-    private String[][] ingredientList;
     private final IngredientsSheet VIEW;
 
-    public IngredientsListManager(String[][] inputIngredientList) {
-        this.ingredientList = inputIngredientList;
+    public IngredientsListManager(IngredientsList inputIngredientList) {
         this.VIEW = new IngredientsSheet();
         this.VIEW.setVisible(true);
+        this.VIEW.setIngredientsList(inputIngredientList);
+        
         this.addActionListeners();
     }
 
