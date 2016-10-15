@@ -36,49 +36,49 @@ public class OrangeCakeRecipe implements Recipe{
                 Ingredients.BUTTER;
         outputRecipe [ this.BUTTER_DESCRIPTION ][ IngredientsList.INGREDIENT_QUANTITY ] =
                 this.BUTTER_QUANTITY;
-        outputRecipe [ this.BUTTER_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] =
+        outputRecipe [ this.BUTTER_DESCRIPTION ][ IngredientsList.INGREDIENT_UNIT ] =
                 Units.GRAM;
         
         outputRecipe [ this.SUGAR_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] =
                 Ingredients.SUGAR;
         outputRecipe [ this.SUGAR_DESCRIPTION ][ IngredientsList.INGREDIENT_QUANTITY ] =
                 this.SUGAR_QUANTITY;
-        outputRecipe [ this.SUGAR_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] =
+        outputRecipe [ this.SUGAR_DESCRIPTION ][ IngredientsList.INGREDIENT_UNIT ] =
                 Units.GRAM;
         
         outputRecipe [ this.EGGS_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] =
                 Ingredients.EGGS;
         outputRecipe [ this.EGGS_DESCRIPTION ][ IngredientsList.INGREDIENT_QUANTITY ] =
                 this.EGGS_QUANTITY;
-        outputRecipe [ this.EGGS_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] =
+        outputRecipe [ this.EGGS_DESCRIPTION ][ IngredientsList.INGREDIENT_UNIT ] =
                 Units.PIECE;
         
         outputRecipe [ this.BAKING_POWDER_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] =
                 Ingredients.BAKING_POWDER;
         outputRecipe [ this.BAKING_POWDER_DESCRIPTION ][ IngredientsList.INGREDIENT_QUANTITY ] =
                 this.BAKING_POWDER_QUANTITY;
-        outputRecipe [ this.BAKING_POWDER_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] =
+        outputRecipe [ this.BAKING_POWDER_DESCRIPTION ][ IngredientsList.INGREDIENT_UNIT ] =
                 Units.TABLESPOON;
         
         outputRecipe [ this.ORANGE_JUICE_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] =
                 Ingredients.ORANGE_JUICE;
         outputRecipe [ this.ORANGE_JUICE_DESCRIPTION ][ IngredientsList.INGREDIENT_QUANTITY ] =
                 this.ORANGE_JUICE_QUANTITY;
-        outputRecipe [ this.ORANGE_JUICE_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] =
+        outputRecipe [ this.ORANGE_JUICE_DESCRIPTION ][ IngredientsList.INGREDIENT_UNIT ] =
                 Units.CUP;
         
         outputRecipe [ this.ORANGE_ZEST_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] =
                 Ingredients.ORANGE_ZEST;
         outputRecipe [ this.ORANGE_ZEST_DESCRIPTION ][ IngredientsList.INGREDIENT_QUANTITY ] =
                 this.ORANGE_ZEST_QUANTITY;
-        outputRecipe [ this.ORANGE_ZEST_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] =
+        outputRecipe [ this.ORANGE_ZEST_DESCRIPTION ][ IngredientsList.INGREDIENT_UNIT ] =
                 Units.TABLESPOON;
         
         outputRecipe [ this.FLOUR_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] =
                 Ingredients.FLOUR;
         outputRecipe [ this.FLOUR_DESCRIPTION ][ IngredientsList.INGREDIENT_QUANTITY ] =
                 this.FLOUR_QUANTITY;
-        outputRecipe [ this.FLOUR_DESCRIPTION ][ IngredientsList.INGREDIENT_NAME ] =
+        outputRecipe [ this.FLOUR_DESCRIPTION ][ IngredientsList.INGREDIENT_UNIT ] =
                 Units.GRAM;
         
         return outputRecipe;

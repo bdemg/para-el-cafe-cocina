@@ -97,7 +97,7 @@ public final class OrdersManager extends Controller {
         orders[0][2] = "12/10/2016 16:75";
         orders[0][3] = false;
         
-        orders[1][0] = "Roles de canela";
+        orders[1][0] = "Roles de Canela";
         orders[1][1] = 6;
         orders[1][2] = "12/10/2016 16:75";
         orders[1][3] = false;
@@ -107,7 +107,7 @@ public final class OrdersManager extends Controller {
         orders[2][2] = "12/10/2016 16:75";
         orders[2][3] = false;
         
-        orders[3][0] = "Pastel de Fresas";
+        orders[3][0] = "Pastel de Naranja";
         orders[3][1] = 1;
         orders[3][2] = "12/10/2016 16:75";
         orders[3][3] = false;
