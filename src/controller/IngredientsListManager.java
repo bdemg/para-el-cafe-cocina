@@ -5,23 +5,34 @@ import javax.swing.JOptionPane;
 import model.WarningMessager;
 import view.IngredientsSheet;
 import model.IngredientsList;
+import model.Order;
 
 public final class IngredientsListManager extends Controller {
 
-    private final IngredientsSheet VIEW;
+    private final IngredientsSheet ingredientsSheet;
+    private final Order order;
+    
+    private final String INGREDIENTS_TITLE = "Lista de ingredientes para ";
+    private final String BLANKSPACE = " "; 
 
-    public IngredientsListManager(IngredientsList inputIngredientList) {
-        this.VIEW = new IngredientsSheet();
-        this.VIEW.setVisible(true);
-        this.VIEW.setIngredientsList(inputIngredientList);
+    public IngredientsListManager(IngredientsList inputIngredientList, Order inputOrder) {
+        this.ingredientsSheet = new IngredientsSheet();
+        this.ingredientsSheet.setVisible(true);
+        this.ingredientsSheet.setLocationRelativeTo(null);
+        this.ingredientsSheet.setResizable(false);
+        this.ingredientsSheet.setIngredientsList(inputIngredientList);
+        this.ingredientsSheet.setTitle(this.INGREDIENTS_TITLE + inputOrder.getProductQuantity() +
+                this.BLANKSPACE + inputOrder.getProductName());
+        
+        this.order = inputOrder;
         
         this.addActionListeners();
     }
 
     @Override
     protected void addActionListeners() {
-        this.VIEW.getCloseButton().addActionListener(this);
-        this.VIEW.getBakeButton().addActionListener(this);
+        this.ingredientsSheet.getCloseButton().addActionListener(this);
+        this.ingredientsSheet.getBakeButton().addActionListener(this);
     }
 
     @Override
@@ -36,15 +47,15 @@ public final class IngredientsListManager extends Controller {
     }
 
     private boolean isNotGoingToBake(Object eventSource) {
-        return eventSource == this.VIEW.getCloseButton();
+        return eventSource == this.ingredientsSheet.getCloseButton();
     }
 
     private boolean isBaking(Object eventSource) {
-        return eventSource == this.VIEW.getBakeButton();
+        return eventSource == this.ingredientsSheet.getBakeButton();
     }
     
     private void scrapIngredientsList(){
-        this.VIEW.dispose();
+        this.ingredientsSheet.dispose();
     }
     
     private void orderCompleted(){
@@ -52,7 +63,7 @@ public final class IngredientsListManager extends Controller {
         //implementar cuando se tenga el DAO
         WarningMessager warningMessager = WarningMessager.callWarningMessager();
         warningMessager.showWarningMessage(warningMessager.CONFIRM_BAKING_ORDER);
-        this.VIEW.dispose();
+        this.ingredientsSheet.dispose();
     }
 
 }

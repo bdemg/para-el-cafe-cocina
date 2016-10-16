@@ -37,7 +37,7 @@ public class Chef {
                 rawIngredients );
         IngredientsList ingredientsList = new IngredientsList( adjustedIngredients );
         
-        new IngredientsListManager( ingredientsList );
+        new IngredientsListManager( ingredientsList, inputOrder );
     }
 
     private Object[][] adjustIngredientsQuantity( int inputProductQuantity, Object[][] modIngredients ) {
