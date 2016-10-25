@@ -46,7 +46,7 @@ public class PasswordFileDAO {
         
         try {
             
-            PrintWriter writeFile = new PrintWriter( PASSWORD_FILE );
+            PrintWriter writeFile = new PrintWriter( this.PASSWORD_FILE );
             writeFile.println( password );
             writeFile.close();
             
