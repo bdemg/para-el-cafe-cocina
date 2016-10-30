@@ -29,6 +29,13 @@ public class AccessManager extends Controller {
         this.accessDoor.setVisible(true);
         this.addActionListeners();
     }
+    
+    @Override
+    protected void addActionListeners() {
+        
+        this.accessDoor.getButtonEnterDoor().addActionListener(this);
+        this.accessDoor.getButtonForgotPassword().addActionListener(this);
+    }
 
     @Override
     public void actionPerformed(ActionEvent event) {
@@ -53,18 +60,11 @@ public class AccessManager extends Controller {
         return eventSource == this.accessDoor.getButtonForgotPassword();
     }
 
-    @Override
-    protected void addActionListeners() {
-        
-        this.accessDoor.getButtonEnterDoor().addActionListener(this);
-        this.accessDoor.getButtonForgotPassword().addActionListener(this);
-    }
-
     private void enterAccessDoor() {
         
         if ( isAccessKey() ) {
-            new OrdersManager();
             this.accessDoor.dispose();
+            OrdersManager ordersManager = new OrdersManager();
             
         } else {
             ErrorMessager errorMessager = ErrorMessager.callErrorMessager();
@@ -77,8 +77,10 @@ public class AccessManager extends Controller {
         
         PasswordFileDAO passwordFileDAO = PasswordFileDAO.getPasswordFileDAO();
         String encryptedPassword = passwordFileDAO.getStoredPassword();
+        
         PasswordCypher passwordCypher = PasswordCypher.callPasswordCypher();
         String storedPassword = passwordCypher.decryptPassword( encryptedPassword );
+        
         String enteredPassword = this.accessDoor.getPasswordField().getText();
         return ( storedPassword.equals( enteredPassword ) );
     }
@@ -96,15 +98,14 @@ public class AccessManager extends Controller {
         return questionAnswer;
     }
 
-    private void callPasswordManager( String questionAnswer ) {
+    private void callPasswordManager( String input_QuestionAnswer ) {
         
-        boolean isAnswerCorrect = ( questionAnswer.equals( this.SECURITY_QUESTION_ANSWER ) );
+        boolean isAnswerCorrect = ( input_QuestionAnswer.equals( this.SECURITY_QUESTION_ANSWER ) );
         if ( isAnswerCorrect ) {
-            
             this.accessDoor.dispose();
             PasswordManager passwordManager = new PasswordManager();
-        } else {
             
+        } else {
             ErrorMessager errorMessager = ErrorMessager.callErrorMessager();
             errorMessager.showErrorMessage(errorMessager.SECURITY_QUESTION_ERROR);
         }
