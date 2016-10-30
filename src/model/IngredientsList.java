@@ -10,8 +10,8 @@ public class IngredientsList extends DefaultTableModel{
     
     private static final String[] COLUMN_TITLES = {"Ingredientes", "Cantidad", "Unidades"};
     
-    public IngredientsList(int inputRowCount){
-        super(IngredientsList.COLUMN_TITLES, inputRowCount);
+    public IngredientsList(int input_rowCount){
+        super(IngredientsList.COLUMN_TITLES, input_rowCount);
     }
 
     public IngredientsList(Object[][] data) {
@@ -21,10 +21,10 @@ public class IngredientsList extends DefaultTableModel{
     
     
     @Override
-    public Class<?> getColumnClass(int inputColumnIndex) {
+    public Class<?> getColumnClass(int input_columnIndex) {
         
         Class columnClass = String.class;
-        switch (inputColumnIndex) {
+        switch (input_columnIndex) {
             
             case IngredientsList.INGREDIENT_NAME:
                 columnClass = String.class;

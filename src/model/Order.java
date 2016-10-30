@@ -17,14 +17,14 @@ public class Order {
 
     
     public Order( 
-            String inputProductName, 
-            String inputDueDate, 
-            int inputProductQuantity
+            String input_productName, 
+            String input_dueDate, 
+            int input_productQuantity
     ) {
         
-        this.productName = inputProductName;
-        this.productQuantity = inputProductQuantity;
-        this.dueDate = inputDueDate;
+        this.productName = input_productName;
+        this.productQuantity = input_productQuantity;
+        this.dueDate = input_dueDate;
     }
 
     

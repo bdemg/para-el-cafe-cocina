@@ -18,12 +18,12 @@ public class Fraction {
     private int denominator;
     
 
-    public Fraction( int numerator, int denominator ) {
+    public Fraction( int input_numerator, int input_denominator ) {
         
-        this.numerator = numerator;
+        this.numerator = input_numerator;
         
-        if ( !this.isZero( denominator ) ) {
-            this.denominator = denominator;
+        if ( !this.isZero( input_denominator ) ) {
+            this.denominator = input_denominator;
         }
     }
 
@@ -40,16 +40,16 @@ public class Fraction {
     }
 
     
-    public void setNumerator( int numerator ) {
+    public void setNumerator( int input_numerator ) {
         
-        this.numerator = numerator;
+        this.numerator = input_numerator;
     }
 
     
-    public void setDenominator( int denominator ) {
+    public void setDenominator( int input_denominator ) {
         
-        if ( !this.isZero( denominator ) ) {
-            this.denominator = denominator;
+        if ( !this.isZero( input_denominator ) ) {
+            this.denominator = input_denominator;
         }
     }
 
@@ -101,9 +101,9 @@ public class Fraction {
     }
     
     
-    private boolean isZero( int denominator ) {
+    private boolean isZero( int input_denominator ) {
         
-        return denominator == 0;
+        return input_denominator == 0;
     }
     
 }
