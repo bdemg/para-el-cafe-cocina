@@ -60,9 +60,8 @@ public class OrdersDAO extends DAO{
             nonBakedProducts[ this.QUANTITY_COLUMN ] = 
                     resultSet.getInt( this.QUANTITY_COLUMN_NAME );
             
-            Timestamp date = resultSet.getTimestamp( this.DATE_COLUMN_NAME );
             nonBakedProducts[ this.DATE_COLUMN ] = 
-                    this.timestampToString( date );
+                    this.timestampToString( resultSet.getTimestamp( this.DATE_COLUMN_NAME ) );
             
             nonBakedProducts[ this.ISBAKED_COLUMN ] = 
                     resultSet.getBoolean( this.ISBAKED_COLUMN_NAME );
@@ -89,7 +88,7 @@ public class OrdersDAO extends DAO{
         }
     }
     
-    public String timestampToString(Timestamp input_Date){
+    private String timestampToString(Timestamp input_Date){
         
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(input_Date.getTime());
