@@ -26,12 +26,12 @@ public class ErrorMessager {
         return errorMessager;
     }
     
-    public void showErrorMessage( String inputErrorMessage ){
+    public void showErrorMessage( String input_ErrorMessage ){
         
         JFrame errorFrame = new JFrame();
         JOptionPane.showMessageDialog(
             errorFrame,
-            inputErrorMessage,
+            input_ErrorMessage,
             this.ERROR_TITLE,
             JOptionPane.ERROR_MESSAGE
         );

@@ -35,9 +35,9 @@ public final class OrdersManager extends Controller {
     
     
     @Override
-    public void actionPerformed( ActionEvent inputEvent ) {
+    public void actionPerformed( ActionEvent input_actionEvent ) {
         
-        Object eventSource = inputEvent.getSource();
+        Object eventSource = input_actionEvent.getSource();
         
         if( this.isSelectingOrders( eventSource ) ){
             this.selectOrdersToBake();
@@ -45,9 +45,9 @@ public final class OrdersManager extends Controller {
     }
     
     
-    private boolean isSelectingOrders( Object inputEventSource ) {
+    private boolean isSelectingOrders( Object input_eventSource ) {
         
-        return inputEventSource == this.ordersBoard.getShowIngredientsButton();
+        return input_eventSource == this.ordersBoard.getShowIngredientsButton();
     }
     
 

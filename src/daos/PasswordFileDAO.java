@@ -42,12 +42,12 @@ public class PasswordFileDAO {
         return null;
     }
 
-    public void storePassword( String password ) {
+    public void storePassword( String input_Password ) {
         
         try {
             
             PrintWriter writeFile = new PrintWriter( this.PASSWORD_FILE );
-            writeFile.println( password );
+            writeFile.println( input_Password );
             writeFile.close();
             
         } catch ( FileNotFoundException ex ) {

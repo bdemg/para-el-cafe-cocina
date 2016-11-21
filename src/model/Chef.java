@@ -27,42 +27,50 @@ public class Chef {
         return chef;
     }
 
-    public void createIngredientsList( Order inputOrder ) {
+    public void createIngredientsList( Order input_order ) {
         
         Cookbook cookbook = Cookbook.getInstance();
-        Recipe recipe = cookbook.getRecipe( inputOrder.getProductName() );
+        Recipe recipe = cookbook.getRecipe( input_order.getProductName() );
         
         Object[][] rawIngredients = recipe.getIngredients();
-        Object[][] adjustedIngredients = this.adjustIngredientsQuantity( inputOrder.getProductQuantity(),
+        Object[][] adjustedIngredients = this.adjustIngredientsQuantity( input_order.getProductQuantity(),
                 rawIngredients );
         IngredientsList ingredientsList = new IngredientsList( adjustedIngredients );
         
-        new IngredientsListManager( ingredientsList, inputOrder );
+        new IngredientsListManager( ingredientsList, input_order );
     }
 
-    private Object[][] adjustIngredientsQuantity( int inputProductQuantity, Object[][] modIngredients ) {
+    private Object[][] adjustIngredientsQuantity( int input_productQuantity, Object[][] mod_ingredients ) {
         
-        for ( Object[] ingredientDescription : modIngredients ) {
+        for ( Object[] ingredientDescription : mod_ingredients ) {
             
-            if ( isInteger( ingredientDescription[ Cookbook.INGREDIENT_QUANTITY ] ) ) {
+            Measurement measurementType = identifyMeasurementType( 
+                ingredientDescription[ Cookbook.INGREDIENT_QUANTITY ]);
+            
+            if ( measurementType == Measurement.WHOLE_NUMBER ) {
                 ingredientDescription[ Cookbook.INGREDIENT_QUANTITY ] = 
                         ( (int) ingredientDescription[ Cookbook.INGREDIENT_QUANTITY ] *
-                        inputProductQuantity );
+                        input_productQuantity );
                 
             } else {
                 Fraction ingredientQuantity = 
                         (Fraction) ingredientDescription[ Cookbook.INGREDIENT_QUANTITY ];
                 ingredientQuantity.setNumerator( ingredientQuantity.getNumerator() *
-                        inputProductQuantity );
+                        input_productQuantity );
                 
                 ingredientDescription[ Cookbook.INGREDIENT_QUANTITY ] = ingredientQuantity;
             }
         }
-        return modIngredients;
+        return mod_ingredients;
     }
 
-    private boolean isInteger( Object inputIngredientQuantity ) {
+    private Measurement identifyMeasurementType( Object input_ingredientQuantity ) {
         
-        return inputIngredientQuantity instanceof Integer;
+        if(input_ingredientQuantity instanceof Integer){
+            return Measurement.WHOLE_NUMBER;
+        }
+        else{
+            return Measurement.FRACTION;
+        }
     }
 }

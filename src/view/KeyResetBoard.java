@@ -12,12 +12,12 @@ import javax.swing.JPasswordField;
  *
  * @author Antonio Soto
  */
-public class KeyReset extends javax.swing.JFrame {
+public class KeyResetBoard extends javax.swing.JFrame {
 
     /**
      * Creates new form KeyReset
      */
-    public KeyReset() {
+    public KeyResetBoard() {
         initComponents();
     }
 
@@ -100,20 +100,21 @@ public class KeyReset extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(KeyReset.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KeyResetBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(KeyReset.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KeyResetBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(KeyReset.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KeyResetBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(KeyReset.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KeyResetBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new KeyReset().setVisible(true);
+                new KeyResetBoard().setVisible(true);
             }
         });
     }
