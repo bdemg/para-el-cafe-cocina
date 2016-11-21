@@ -34,7 +34,8 @@ public class OrdersBoard extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProduction = new javax.swing.JTable();
-        ShowIngredientsButton = new javax.swing.JButton();
+        showIngredients = new javax.swing.JButton();
+        retriveOrders = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Producción");
@@ -43,24 +44,30 @@ public class OrdersBoard extends javax.swing.JFrame {
         tableProduction.setRowSelectionAllowed(false);
         jScrollPane1.setViewportView(tableProduction);
 
-        ShowIngredientsButton.setText("Mostrar Ingredientes");
+        showIngredients.setText("Mostrar Ingredientes");
+
+        retriveOrders.setText("Obtener Ordenes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(401, Short.MAX_VALUE)
-                .addComponent(ShowIngredientsButton)
+                .addContainerGap()
+                .addComponent(retriveOrders)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(showIngredients)
                 .addContainerGap())
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                 .addGap(8, 8, 8)
-                .addComponent(ShowIngredientsButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(showIngredients)
+                    .addComponent(retriveOrders))
                 .addContainerGap())
         );
 
@@ -101,19 +108,25 @@ public class OrdersBoard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ShowIngredientsButton;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton retriveOrders;
+    private javax.swing.JButton showIngredients;
     private javax.swing.JTable tableProduction;
     // End of variables declaration//GEN-END:variables
 
     
-    public JButton getShowIngredientsButton() {
-        return ShowIngredientsButton;
+    public JButton getShowIngredients() {
+        return showIngredients;
     }
 
     
     public OrdersList getOrdersList() {
         return (OrdersList) this.tableProduction.getModel();
+    }
+
+    
+    public JButton getRetriveOrders() {
+        return retriveOrders;
     }
     
     

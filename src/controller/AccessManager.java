@@ -64,7 +64,7 @@ public class AccessManager extends Controller {
   
         if ( isAccessKey() ) {
             this.accessDoor.dispose();
-            OrdersManager ordersManager = new OrdersManager();
+            OrdersManager.callOrdersManager();
             
         } else {
             ErrorMessager errorMessager = ErrorMessager.callErrorMessager();

@@ -19,16 +19,21 @@ import view.OrdersBoard;
 public final class OrdersManager extends Controller {
     
     private final OrdersBoard ordersBoard;
+    private static final OrdersManager ordersManager = new OrdersManager();
     
+    public static OrdersManager callOrdersManager(){
+        
+        return OrdersManager.ordersManager;
+    }
     
-    public OrdersManager() {
+    private OrdersManager() {
         
         this.ordersBoard = new OrdersBoard();
         this.setupOrdersBoard();
         
         this.addActionListeners();
         
-        this.retriveOrders();
+        this.putUpNonBakedOrdersInBoard();
     }
     
     
@@ -46,20 +51,28 @@ public final class OrdersManager extends Controller {
         
         if( this.isSelectingOrders( eventSource ) ){
             this.selectOrdersToBake();
+        }else if( this.isRequestingOrders( eventSource ) ){
+            this.putUpNonBakedOrdersInBoard();
         }
     }
     
     
     private boolean isSelectingOrders( Object input_eventSource ) {
         
-        return input_eventSource == this.ordersBoard.getShowIngredientsButton();
+        return input_eventSource == this.ordersBoard.getShowIngredients();
+    }
+    
+    
+    private boolean isRequestingOrders( Object input_eventSource ) {
+        
+        return input_eventSource == this.ordersBoard.getRetriveOrders();
     }
     
 
     @Override
     protected void addActionListeners() {
         
-        this.ordersBoard.getShowIngredientsButton().addActionListener( this );
+        this.ordersBoard.getShowIngredients().addActionListener( this );
     }
     
     
@@ -86,16 +99,16 @@ public final class OrdersManager extends Controller {
     }
     
     
-    private void retriveOrders() {
+    private void putUpNonBakedOrdersInBoard() {
         
         Object[][] UnbakedOrders = OrdersDAO.getOrdersDAO().retreiveNonBakedOrders(); 
         this.ordersBoard.setOrdersList( new OrdersList( UnbakedOrders ) );
     }
     
-    public void markOrderReadyForDelivery(String input_orderFolio){
+    public void markOrderAsBaked(String input_orderFolio){
         
         OrdersDAO.getOrdersDAO().updateProductBakedState(input_orderFolio);
-        this.retriveOrders();
+        this.putUpNonBakedOrdersInBoard();
     }
 
     
