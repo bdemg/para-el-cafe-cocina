@@ -5,6 +5,7 @@
  */
 package controller;
 
+import daos.OrdersDAO;
 import java.awt.event.ActionEvent;
 import model.Chef;
 import model.Order;
@@ -23,14 +24,18 @@ public final class OrdersManager extends Controller {
     public OrdersManager() {
         
         this.ordersBoard = new OrdersBoard();
-        this.ordersBoard.setVisible( true );
-        this.ordersBoard.setResizable(false);
-        this.ordersBoard.setLocationRelativeTo(null);
+        this.setupOrdersBoard();
         
         this.addActionListeners();
         
-        Object[][] orders = this.retriveOrders();
-        this.ordersBoard.setOrdersList(new OrdersList(orders));
+        this.retriveOrders();
+    }
+    
+    
+    private void setupOrdersBoard(){
+        this.ordersBoard.setVisible( true );
+        this.ordersBoard.setResizable( false );
+        this.ordersBoard.setLocationRelativeTo( null );
     }
     
     
@@ -68,51 +73,30 @@ public final class OrdersManager extends Controller {
                     OrdersList.SELECTION );
             if( isOrderSelected ){
                 
-                String productName = (String) ordersList.getValueAt( ordersCount,
-                    OrdersList.PRODUCT_NAME );
-                int productQuantity = (int) ordersList.getValueAt( ordersCount,
-                    OrdersList.PRODUCT_QUANTITY );
-                String dueDate = (String) ordersList.getValueAt( ordersCount,
-                    OrdersList.DUE_DATE );
                 Order selectedOrder = new Order( 
-                    productName,
-                    dueDate,
-                    productQuantity 
+                    (String) ordersList.getValueAt( ordersCount, OrdersList.FOLIO ),
+                    (String) ordersList.getValueAt( ordersCount, OrdersList.PRODUCT_NAME ),
+                    (String) ordersList.getValueAt( ordersCount, OrdersList.DUE_DATE ),
+                    (int) ordersList.getValueAt( ordersCount, OrdersList.PRODUCT_QUANTITY )
                 );
                 
                 Chef.callChef().createIngredientsList( selectedOrder );
             }
         }
     }
-
     
-    //Actualmente con valores prueba, eventualmente se comunicará con un DAO
     
-    private Object[][] retriveOrders() {
+    private void retriveOrders() {
         
-        Object[][] orders = new Object[4][4];
+        Object[][] orders = (Object[][]) OrdersDAO.getOrdersDAO().retreiveNonBakedProducts();
         
-        orders[0][0] = "Brownies";
-        orders[0][1] = 4;
-        orders[0][2] = "12/10/2016 16:75";
-        orders[0][3] = false;
+        this.ordersBoard.setOrdersList( new OrdersList(orders) );
+    }
+    
+    public void markOrderReadyForDelivery(String input_orderFolio){
         
-        orders[1][0] = "Roles de Canela";
-        orders[1][1] = 6;
-        orders[1][2] = "12/10/2016 16:75";
-        orders[1][3] = false;
-        
-        orders[2][0] = "Cupcake perfecto";
-        orders[2][1] = 1;
-        orders[2][2] = "12/10/2016 16:75";
-        orders[2][3] = false;
-        
-        orders[3][0] = "Pastel de Naranja";
-        orders[3][1] = 1;
-        orders[3][2] = "12/10/2016 16:75";
-        orders[3][3] = false;
-        
-        return orders;
+        OrdersDAO.getOrdersDAO().updateProductBakedState(input_orderFolio);
+        this.retriveOrders();
     }
 
     

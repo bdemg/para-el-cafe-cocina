@@ -5,11 +5,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class OrdersList extends DefaultTableModel {
     
-    public static final int PRODUCT_NAME = 0;
-    public static final int PRODUCT_QUANTITY = 1;
-    public static final int DUE_DATE = 2;
-    public static final int SELECTION = 3;
-    private static final String[] COLUMN_TITLES = {"Producto", "Cantidad", "Fecha", "Seleccionar"};
+    public static final int FOLIO = 0;
+    public static final int PRODUCT_NAME = 1;
+    public static final int PRODUCT_QUANTITY = 2;
+    public static final int DUE_DATE = 3;
+    public static final int SELECTION = 4;
+    private static final String[] COLUMN_TITLES = {"Folio", "Producto", "Cantidad", "Fecha", "Seleccionar"};
 
     public OrdersList(int input_rowCount) {
         super(OrdersList.COLUMN_TITLES, input_rowCount);
@@ -24,6 +25,10 @@ public class OrdersList extends DefaultTableModel {
         
         Class columnClass = String.class;
         switch (input_columnIndex) {
+            
+            case OrdersList.FOLIO:
+                columnClass = String.class;
+                break;
             
             case OrdersList.PRODUCT_NAME:
                 columnClass = String.class;
