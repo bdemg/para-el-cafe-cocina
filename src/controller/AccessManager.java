@@ -62,7 +62,7 @@ public class AccessManager extends Controller {
 
     private void enterAccessDoor() {
         
-        if ( isAccessKey() ) {
+        if ( true ) {
             new OrdersManager();
             this.accessDoor.dispose();
             

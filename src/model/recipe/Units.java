@@ -11,4 +11,6 @@ public class Units {
     static final String TABLESPOON = "tblspn.";
     static final String CUP = "cup";
     static final String PIECE = "pz.";
+    static final String CAN = "lata";
+    static final String PACK = "paq.";
 }

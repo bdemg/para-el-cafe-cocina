@@ -15,6 +15,8 @@ public class Ingredients {
     static final String STABILIZER = "Estabilizador";
     static final String YEAST = "Levadura";
     static final String MARGARINE = "Margarina";
+    static final String OIL = "Aceite";
+    static final String VINEGAR = "Vinagre";
     static final String VEGETAL_OIL = "Aceite vegetal";
     static final String CRUSHED_NUTS = "Nuez molida";
     static final String GLASS_SUGAR = "Azucar Glass";
@@ -31,5 +33,7 @@ public class Ingredients {
     static final String MONTERREY_JACK_CHEESE = "Queso Monterrey Jack";
     static final String PEPPER = "Pimienta";
     static final String HONEY = "Miel";
+    static final String YOGURTH_NATURAL = "Yogurt Natural";
+    static final String COLORANT_RED = "Colorante Rojo";
     
 }

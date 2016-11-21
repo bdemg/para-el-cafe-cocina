@@ -9,6 +9,8 @@
 *.ear
 *.xml
 *.mf
+*.rar
+*.zip
 
 build/
 nbproject/
