@@ -43,7 +43,7 @@ public class OrdersDAO extends DAO{
         return ordersDAO;
     }
     
-    public Object[] retreiveNonBakedProducts(){
+    public Object[][] retreiveNonBakedOrders(){
         
         try { 
             PreparedStatement queryStatement = (PreparedStatement)
@@ -51,27 +51,47 @@ public class OrdersDAO extends DAO{
             
             ResultSet resultSet = queryStatement.executeQuery();
             
-            Object[] nonBakedProducts = new String[resultSet.getMetaData().getColumnCount()];
-            
-            nonBakedProducts[ this.FOLIO_COLUMN ] = 
-                    resultSet.getString( this.FOLIO_COLUMN_NAME );
-            nonBakedProducts[ this.PRODUCTNAME_COLUMN ] = 
-                    resultSet.getString( this.PRODUCTNAME_COLUMN_NAME );
-            nonBakedProducts[ this.QUANTITY_COLUMN ] = 
-                    resultSet.getInt( this.QUANTITY_COLUMN_NAME );
-            
-            nonBakedProducts[ this.DATE_COLUMN ] = 
-                    this.timestampToString( resultSet.getTimestamp( this.DATE_COLUMN_NAME ) );
-            
-            nonBakedProducts[ this.ISBAKED_COLUMN ] = 
-                    resultSet.getBoolean( this.ISBAKED_COLUMN_NAME );
-            
-            return nonBakedProducts;
+            return this.retreivedOrdersToArray( resultSet );
             
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return null;
+    }
+    
+    private Object[][] retreivedOrdersToArray(ResultSet resultSet) throws SQLException{
+        
+        int maxRows = 0;
+        if(resultSet.last()){
+            maxRows = resultSet.getRow();
+            resultSet.beforeFirst();
+        }
+            
+        int maxColumns = resultSet.getMetaData().getColumnCount();
+        Object[][] nonBakedOrders = new Object[maxRows][maxColumns];
+        int row = 0;
+            
+        while(resultSet.next()){
+                    
+            nonBakedOrders[ row ][ this.FOLIO_COLUMN ] = 
+                    resultSet.getString( this.FOLIO_COLUMN_NAME );
+                    
+            nonBakedOrders[ row ][ this.PRODUCTNAME_COLUMN ] = 
+                    resultSet.getString( this.PRODUCTNAME_COLUMN_NAME );
+                    
+            nonBakedOrders[ row ][ this.QUANTITY_COLUMN ] = 
+                    resultSet.getInt( this.QUANTITY_COLUMN_NAME );
+                    
+            nonBakedOrders[ row ][ this.DATE_COLUMN ] = 
+                    this.timestampToString( resultSet.getTimestamp( this.DATE_COLUMN_NAME ) );
+                    
+            nonBakedOrders[ row ][ this.ISBAKED_COLUMN ] = 
+                    resultSet.getBoolean( this.ISBAKED_COLUMN_NAME );
+                    
+            row++;
+        }
+        
+        return nonBakedOrders;
     }
     
     public void updateProductBakedState( String input_Folio ){
