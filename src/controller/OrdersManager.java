@@ -88,9 +88,8 @@ public final class OrdersManager extends Controller {
     
     private void retriveOrders() {
         
-        Object[][] orders = (Object[][]) OrdersDAO.getOrdersDAO().retreiveNonBakedProducts();
-        
-        this.ordersBoard.setOrdersList( new OrdersList(orders) );
+        Object[][] UnbakedOrders = OrdersDAO.getOrdersDAO().retreiveNonBakedOrders(); 
+        this.ordersBoard.setOrdersList( new OrdersList( UnbakedOrders ) );
     }
     
     public void markOrderReadyForDelivery(String input_orderFolio){
