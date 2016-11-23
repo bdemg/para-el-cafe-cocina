@@ -5,15 +5,15 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Antonio Soto
+ * @author (c) Copyright 2016 José A. Soto. All Rights Reserved.
  */
 public class ErrorMessager {
     
     private static final ErrorMessager errorMessager = new ErrorMessager();
     
-    public final String INPUT_PASSWORD_ERROR = "Contraseña inválida.";
-    public final String FILE_ERROR = "No se encontró el archivo. Consulte con el Ingeniero.";
-    public final String SECURITY_QUESTION_ERROR = "Respuesta incorrecta.";
+    public static final String INPUT_PASSWORD_ERROR = "Contraseña inválida.";
+    public static final String FILE_ERROR = "No se encontró el archivo. Consulte con el Ingeniero.";
+    public static final String SECURITY_QUESTION_ERROR = "Respuesta incorrecta.";
     
     private final String ERROR_TITLE = "¡Error!";
     

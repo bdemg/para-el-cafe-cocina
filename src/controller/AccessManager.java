@@ -11,7 +11,7 @@ import view.AccessDoor;
 
 /**
  *
- * @author Antonio Soto
+ * @author (c) Copyright 2016 José A. Soto. All Rights Reserved.
  */
 public class AccessManager extends Controller {
 
@@ -20,6 +20,8 @@ public class AccessManager extends Controller {
     private final String SECURITY_QUESTION = "¿Cuál es su nombre?";
     private final String SECURITY_QUESTION_TITLE = "Pregunta de Seguridad";
     private final String SECURITY_QUESTION_ANSWER = "nombre";
+    
+    private final String EMPTY = "";
 
     public AccessManager() {
         
@@ -63,14 +65,23 @@ public class AccessManager extends Controller {
     private void enterAccessDoor() {
   
         if ( isAccessKey() ) {
-            this.accessDoor.dispose();
+            this.closeAccessDoor();
             OrdersManager.callOrdersManager();
             
         } else {
-            ErrorMessager errorMessager = ErrorMessager.callErrorMessager();
-            errorMessager.showErrorMessage( errorMessager.INPUT_PASSWORD_ERROR );
-            this.accessDoor.clearFields();
+            this.tellErrorMessagerToShowMessage( ErrorMessager.INPUT_PASSWORD_ERROR );
+            this.cleanAccessDoorFields();
         }
+    }
+    
+    private void closeAccessDoor(){
+        
+        this.accessDoor.dispose();
+    }
+    
+    private void cleanAccessDoorFields(){
+        
+        this.accessDoor.getPasswordField().setText( this.EMPTY );
     }
 
     private boolean isAccessKey() {
@@ -103,12 +114,17 @@ public class AccessManager extends Controller {
         boolean isAnswerCorrect = ( input_QuestionAnswer.equals( this.SECURITY_QUESTION_ANSWER ) );
         if ( isAnswerCorrect ) {
             this.accessDoor.dispose();
-            PasswordManager passwordManager = new PasswordManager();
+            PasswordManager.callPasswordManager();
             
         } else {
-            ErrorMessager errorMessager = ErrorMessager.callErrorMessager();
-            errorMessager.showErrorMessage(errorMessager.SECURITY_QUESTION_ERROR);
+            this.tellErrorMessagerToShowMessage( ErrorMessager.SECURITY_QUESTION_ERROR );
         }
+    }
+    
+    private void tellErrorMessagerToShowMessage(String input_ErrorMessage){
+        
+        ErrorMessager errorMessager = ErrorMessager.callErrorMessager();
+        errorMessager.showErrorMessage( input_ErrorMessage );
     }
 
 }

@@ -140,8 +140,4 @@ public class AccessDoor extends javax.swing.JFrame {
     public JPasswordField getPasswordField() {
         return passwordField;
     }
-    
-    public void clearFields(){
-        this.passwordField.setText("");
-    }
 }

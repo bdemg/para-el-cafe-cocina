@@ -9,21 +9,33 @@ import view.KeyResetBoard;
 
 /**
  * 
- * @author Antonio Soto
+ * @author (c) Copyright 2016 José A. Soto. All Rights Reserved.
  */
 public class PasswordManager extends Controller {
-
+    
+    private static final PasswordManager passwordManager = new PasswordManager();
+    
     private final KeyResetBoard keyresetBoard;
 
     private final String EMPTY = "";
+    
+    public static PasswordManager callPasswordManager(){
+        
+        return PasswordManager.passwordManager;
+    }
 
-    public PasswordManager() {
+    private PasswordManager() {
         
         this.keyresetBoard = new KeyResetBoard();
+        this.setupKeyresetBoard();
+        this.addActionListeners();
+    }
+    
+    private void setupKeyresetBoard(){
+        
         this.keyresetBoard.setResizable(false);
         this.keyresetBoard.setLocationRelativeTo(null);
         this.keyresetBoard.setVisible(true);
-        this.addActionListeners();
     }
     
     @Override
@@ -34,6 +46,7 @@ public class PasswordManager extends Controller {
 
     @Override
     public void actionPerformed( ActionEvent event ) {
+        
         Object eventSource = event.getSource();
         if ( isPasswordValid( eventSource ) ) {
             this.validateNewPassword();
@@ -62,6 +75,7 @@ public class PasswordManager extends Controller {
         
         String newPassword = this.keyresetBoard.getNewPasswordField().getText();
         PasswordCypher passwordCypher = PasswordCypher.callPasswordCypher();
+        
         String encryptedPassword = passwordCypher.encryptPassword( newPassword );
         PasswordFileDAO passwordFileDAO = PasswordFileDAO.getPasswordFileDAO();
         passwordFileDAO.storePassword( encryptedPassword );
