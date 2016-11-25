@@ -26,9 +26,7 @@ public class AccessManager extends Controller {
     public AccessManager() {
         
         this.accessDoor = new AccessDoor();
-        this.accessDoor.setResizable(false);
-        this.accessDoor.setLocationRelativeTo(null);
-        this.accessDoor.setVisible(true);
+        
         this.addActionListeners();
     }
     

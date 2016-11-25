@@ -15,7 +15,7 @@ public class PasswordManager extends Controller {
     
     private static final PasswordManager passwordManager = new PasswordManager();
     
-    private final KeyResetBoard keyresetBoard;
+    private final KeyResetBoard keyResetBoard;
 
     private final String EMPTY = "";
     
@@ -26,22 +26,15 @@ public class PasswordManager extends Controller {
 
     private PasswordManager() {
         
-        this.keyresetBoard = new KeyResetBoard();
-        this.setupKeyresetBoard();
-        this.addActionListeners();
-    }
-    
-    private void setupKeyresetBoard(){
+        this.keyResetBoard = new KeyResetBoard();
         
-        this.keyresetBoard.setResizable(false);
-        this.keyresetBoard.setLocationRelativeTo(null);
-        this.keyresetBoard.setVisible(true);
+        this.addActionListeners();
     }
     
     @Override
     protected void addActionListeners() {
         
-        this.keyresetBoard.getButtonOk().addActionListener(this);
+        this.keyResetBoard.getButtonOk().addActionListener(this);
     }
 
     @Override
@@ -55,7 +48,7 @@ public class PasswordManager extends Controller {
     
     private boolean isPasswordValid ( Object eventSource ) {
         
-        return eventSource == this.keyresetBoard.getButtonOk() ;
+        return eventSource == this.keyResetBoard.getButtonOk() ;
     }
 
     private void validateNewPassword() {
@@ -67,13 +60,13 @@ public class PasswordManager extends Controller {
         } else {
             ErrorMessager errorMessager = ErrorMessager.callErrorMessager();
             errorMessager.showErrorMessage( errorMessager.INPUT_PASSWORD_ERROR );
-            this.keyresetBoard.clearFields();
+            this.keyResetBoard.clearFields();
         }
     }
 
     private void storeNewPassword() {
         
-        String newPassword = this.keyresetBoard.getNewPasswordField().getText();
+        String newPassword = this.keyResetBoard.getNewPasswordField().getText();
         PasswordCypher passwordCypher = PasswordCypher.callPasswordCypher();
         
         String encryptedPassword = passwordCypher.encryptPassword( newPassword );
@@ -83,9 +76,9 @@ public class PasswordManager extends Controller {
 
     private boolean arePasswordsMatching() {
         
-        String newPassword = this.keyresetBoard.getNewPasswordField().getText();
+        String newPassword = this.keyResetBoard.getNewPasswordField().getText();
         String confirmedNewPassword
-                = this.keyresetBoard.getConfirmNewPasswordField().getText();
+                = this.keyResetBoard.getConfirmNewPasswordField().getText();
         boolean isEntryBlank = (( newPassword.equals( this.EMPTY ) )
                 && ( confirmedNewPassword.equals( this.EMPTY ) ));
         boolean areEqualPasswords = ( newPassword.equals( confirmedNewPassword ));
@@ -94,7 +87,7 @@ public class PasswordManager extends Controller {
 
     private void callAccessManager() {
         
-        this.keyresetBoard.dispose();
+        this.keyResetBoard.dispose();
         AccessManager accessManager = new AccessManager();
     }
 }

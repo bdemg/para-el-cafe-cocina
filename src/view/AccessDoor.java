@@ -19,6 +19,14 @@ public class AccessDoor extends javax.swing.JFrame {
      */
     public AccessDoor() {
         initComponents();
+        this.setupAccessDoor();
+    }
+    
+    private void setupAccessDoor(){
+        
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     /**

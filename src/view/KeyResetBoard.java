@@ -19,6 +19,14 @@ public class KeyResetBoard extends javax.swing.JFrame {
      */
     public KeyResetBoard() {
         initComponents();
+        this.setupKeyResetBoard();
+    }
+    
+    private void setupKeyResetBoard(){
+        
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     /**
