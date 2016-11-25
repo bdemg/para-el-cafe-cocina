@@ -13,13 +13,15 @@ import model.OrdersList;
 import view.OrdersBoard;
 
 /**
- *
+ * This class represents the pearson in charge of managing the orders that the bakery recives
+ * and giving them to the chef in order to get them baked.
  * @author jorge
  */
 public final class OrdersManager extends Controller {
     
     private final OrdersBoard ordersBoard;
     private static final OrdersManager ordersManager = new OrdersManager();
+    
     
     public static OrdersManager callOrdersManager(){
         
@@ -29,18 +31,10 @@ public final class OrdersManager extends Controller {
     private OrdersManager() {
         
         this.ordersBoard = new OrdersBoard();
-        this.setupOrdersBoard();
         
         this.addActionListeners();
         
         this.putUpNonBakedOrdersInBoard();
-    }
-    
-    
-    private void setupOrdersBoard(){
-        this.ordersBoard.setVisible( true );
-        this.ordersBoard.setResizable( false );
-        this.ordersBoard.setLocationRelativeTo( null );
     }
     
     
@@ -51,6 +45,7 @@ public final class OrdersManager extends Controller {
         
         if( this.isSelectingOrders( eventSource ) ){
             this.selectOrdersToBake();
+            
         }else if( this.isRequestingOrders( eventSource ) ){
             this.putUpNonBakedOrdersInBoard();
         }
@@ -73,9 +68,11 @@ public final class OrdersManager extends Controller {
     protected void addActionListeners() {
         
         this.ordersBoard.getShowIngredients().addActionListener( this );
+        this.ordersBoard.getRetriveOrders().addActionListener(this);
     }
     
     
+    //get the selection of orders that are going to be baked and give them to the chef
     private void selectOrdersToBake() {
         
         OrdersList ordersList = this.ordersBoard.getOrdersList();
@@ -99,12 +96,15 @@ public final class OrdersManager extends Controller {
     }
     
     
+    //get the orders that haven't been baked and put them in the orders board
     private void putUpNonBakedOrdersInBoard() {
         
         Object[][] UnbakedOrders = OrdersDAO.getOrdersDAO().retreiveNonBakedOrders(); 
         this.ordersBoard.setOrdersList( new OrdersList( UnbakedOrders ) );
     }
     
+    
+    //mark a given order as baked when it has been finished
     public void markOrderAsBaked(String input_orderFolio){
         
         OrdersDAO.getOrdersDAO().updateProductBakedState(input_orderFolio);

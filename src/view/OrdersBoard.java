@@ -20,7 +20,17 @@ public class OrdersBoard extends javax.swing.JFrame {
      * Creates new form ProductionView
      */
     public OrdersBoard() {
+        
         initComponents();
+        
+        this.setupOrdersBoard();
+    }
+    
+    private void setupOrdersBoard(){
+        
+        this.setVisible( true );
+        this.setResizable( false );
+        this.setLocationRelativeTo( null );
     }
 
     /**

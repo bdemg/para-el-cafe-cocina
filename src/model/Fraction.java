@@ -6,7 +6,7 @@
 package model;
 
 /**
- *
+ * This class represents a fractionary number.
  * @author Jorge A. Cano
  */
 public class Fraction {
@@ -48,6 +48,7 @@ public class Fraction {
     
     public void setDenominator( int input_denominator ) {
         
+        //only set the denominator if it is different to zero
         if ( !this.isZero( input_denominator ) ) {
             this.denominator = input_denominator;
         }
@@ -59,6 +60,8 @@ public class Fraction {
         
         String fractionRepresentation;
         
+        //the fraction is represented differently, depending on wether it is a proper fraction, a
+        //whole number or a mixed fraction
         if ( this.isProperFraction() ) {
             fractionRepresentation = this.numerator + Fraction.FRACTIONAL_BAR +
                     this.denominator;

@@ -6,9 +6,9 @@
 package model;
 
 /**
- *
+ * This class represents the types of measurements that ingredients can be measured in.
  * @author Jorge A. Cano
  */
-public enum Measurement {
+public enum IngerientMeasurement {
     FRACTION, WHOLE_NUMBER
 }

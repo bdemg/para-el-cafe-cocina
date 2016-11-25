@@ -5,7 +5,7 @@ import javax.swing.UIManager;
 import view.OrdersBoard;
 
 /**
- *
+ * The starting point of the application.
  * @author Antonio Soto
  */
 public class EntryPoint {
@@ -17,6 +17,7 @@ public class EntryPoint {
     }
 
     
+    //set the way the entire program's UI is going to look like
     private static void setSystemLookAndFeel() {
         try {
             

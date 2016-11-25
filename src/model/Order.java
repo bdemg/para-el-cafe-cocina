@@ -6,7 +6,7 @@
 package model;
 
 /**
- *
+ * This class represents a client's order
  * @author Jorge A. Cano
  */
 public class Order {

@@ -10,16 +10,18 @@ public class IngredientsList extends DefaultTableModel{
     
     private static final String[] COLUMN_TITLES = {"Ingredientes", "Cantidad", "Unidades"};
     
+    
     public IngredientsList(int input_rowCount){
         super(IngredientsList.COLUMN_TITLES, input_rowCount);
     }
 
+    
     public IngredientsList(Object[][] data) {
         super(data, IngredientsList.COLUMN_TITLES);
     }
     
     
-    
+    //the diferent types of values that are can be written to the ingredients list
     @Override
     public Class<?> getColumnClass(int input_columnIndex) {
         
