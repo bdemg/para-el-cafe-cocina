@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 
 /**
- *
+ * This class can access and modify the orders information.
  * @author (c) Copyright 2016 José A. Soto. All Rights Reserved.
  */
 public class OrdersDAO extends DAO{
@@ -21,6 +21,7 @@ public class OrdersDAO extends DAO{
     
     private final int FIRST_QUERY_VALUE = 1;
     
+	// Orders table columns
     private final int FOLIO_COLUMN = 0;
     private final int PRODUCTNAME_COLUMN = 1;
     private final int QUANTITY_COLUMN = 2;
@@ -43,6 +44,7 @@ public class OrdersDAO extends DAO{
         return ordersDAO;
     }
     
+	// Gets the list of orders that are not yet baked.
     public Object[][] retreiveNonBakedOrders(){
         
         try { 
@@ -59,6 +61,7 @@ public class OrdersDAO extends DAO{
         return null;
     }
     
+	// Gets the complete list of orders.
     private Object[][] retreivedOrdersToArray(ResultSet resultSet) throws SQLException{
         
         int maxRows = 0;
@@ -94,6 +97,7 @@ public class OrdersDAO extends DAO{
         return nonBakedOrders;
     }
     
+	// Sets the product baked state to true.
     public void updateProductBakedState( String input_Folio ){
         
         try {
@@ -108,6 +112,7 @@ public class OrdersDAO extends DAO{
         }
     }
     
+	 // Converts the date to a readable format.
     private String timestampToString(Timestamp input_Date){
         
         Calendar calendar = Calendar.getInstance();

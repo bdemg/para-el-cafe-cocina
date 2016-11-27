@@ -9,8 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 
 /**
- *
- * @author Antonio Soto
+ * This class represents the program access view.
+ * @author (c) Copyright 2016 José A. Soto. All Rights Reserved.
  */
 public class AccessDoor extends javax.swing.JFrame {
 

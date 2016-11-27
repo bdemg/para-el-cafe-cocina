@@ -4,11 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.Scanner;
-import model.ErrorMessager;
 
 /**
- *
- * @author Antonio Soto
+ * This class can access and modify the password file.
+ * @author (c) Copyright 2016 José A. Soto. All Rights Reserved.
  */
 public class PasswordFileDAO {
 
@@ -24,36 +23,22 @@ public class PasswordFileDAO {
         
         return passwordFileDAO;
     }
-
-    public String getStoredPassword() {
-        
-        try {
+    
+    // Gets the stored password from the password file.
+    public String getStoredPassword() throws FileNotFoundException {
             
-            FileReader ReadFile = new FileReader( this.PASSWORD_FILE );
-            Scanner FileScanner = new Scanner( ReadFile );
-            String password = FileScanner.nextLine();
-            return password;
-            
-        } catch ( FileNotFoundException ex ) {
-            ErrorMessager errorMessager = ErrorMessager.callErrorMessager();
-            errorMessager.showErrorMessage( errorMessager.FILE_ERROR );
-        }
-        
-        return null;
+        FileReader ReadFile = new FileReader( this.PASSWORD_FILE );
+        Scanner FileScanner = new Scanner( ReadFile );
+        String password = FileScanner.nextLine();
+        return password;
     }
-
-    public void storePassword( String input_Password ) {
+    
+    // Stores the new password into the password file.
+    public void storePassword( String input_Password ) throws FileNotFoundException {
         
-        try {
-            
-            PrintWriter writeFile = new PrintWriter( this.PASSWORD_FILE );
-            writeFile.println( input_Password );
-            writeFile.close();
-            
-        } catch ( FileNotFoundException ex ) {
-            ErrorMessager errorMessager = ErrorMessager.callErrorMessager();
-            errorMessager.showErrorMessage( errorMessager.FILE_ERROR );
-        }
+        PrintWriter writeFile = new PrintWriter( this.PASSWORD_FILE );
+        writeFile.println( input_Password );
+        writeFile.close();
     }
 
 }

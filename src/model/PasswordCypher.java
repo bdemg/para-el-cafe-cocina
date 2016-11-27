@@ -4,8 +4,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 /**
- *
- * @author Antonio Soto
+ * This class can cypher and decypher any password.
+ * @author (c) Copyright 2016 José A. Soto. All Rights Reserved.
  */
 public class PasswordCypher {
     
@@ -20,6 +20,7 @@ public class PasswordCypher {
         return passwordCypher;
     }
     
+    // Cyphers the user password.
     public String encryptPassword( String input_Password ) {
         
         Base64.Encoder PasswordEncoder = Base64.getEncoder();
@@ -28,7 +29,8 @@ public class PasswordCypher {
         );
         return outputEncryptedPassword;
     }
-
+    
+    // Decyphers the user password.
     public String decryptPassword( String input_EncryptedPassword ) {
         
         Base64.Decoder PasswordDecoder = Base64.getDecoder();

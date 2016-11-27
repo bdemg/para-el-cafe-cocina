@@ -9,8 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 
 /**
- *
- * @author Antonio Soto
+ * This class shows the new password fields for the user to fill.
+ * @author (c) Copyright 2016 José A. Soto. All Rights Reserved.
  */
 public class KeyResetBoard extends javax.swing.JFrame {
 

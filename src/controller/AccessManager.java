@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -10,20 +11,28 @@ import daos.PasswordFileDAO;
 import view.AccessDoor;
 
 /**
- *
+ * This class is used to control who enters the access door.
  * @author (c) Copyright 2016 José A. Soto. All Rights Reserved.
  */
 public class AccessManager extends Controller {
-
+    
+    private static final AccessManager accessManager = new AccessManager();
+    
     private final AccessDoor accessDoor;
     
+    // Security question info.
     private final String SECURITY_QUESTION = "¿Cuál es su nombre?";
     private final String SECURITY_QUESTION_TITLE = "Pregunta de Seguridad";
     private final String SECURITY_QUESTION_ANSWER = "nombre";
     
     private final String EMPTY = "";
-
-    public AccessManager() {
+    
+    public static AccessManager callAccessManager(){
+        
+        return AccessManager.accessManager;
+    }
+    
+    private AccessManager() {
         
         this.accessDoor = new AccessDoor();
         
@@ -42,11 +51,11 @@ public class AccessManager extends Controller {
         
         Object eventSource = event.getSource();
         if ( isAccessingDoor ( eventSource ) ) {
-            this.enterAccessDoor();
+            this.callOrdersManager();
             
         } else if ( isPasswordForgoten ( eventSource ) ) {
             String questionAnswer = this.askSecurityQuestion();
-            this.callPasswordManager(questionAnswer);
+            this.callPasswordManager( questionAnswer );
         }
     }
     
@@ -59,8 +68,9 @@ public class AccessManager extends Controller {
         
         return eventSource == this.accessDoor.getButtonForgotPassword();
     }
-
-    private void enterAccessDoor() {
+    
+    // Goes to the Orders controller.
+    private void callOrdersManager() {
   
         if ( isAccessKey() ) {
             this.closeAccessDoor();
@@ -72,28 +82,40 @@ public class AccessManager extends Controller {
         }
     }
     
+    // Closes the window.
     private void closeAccessDoor(){
         
         this.accessDoor.dispose();
     }
     
+    // Resets the window.
     private void cleanAccessDoorFields(){
         
         this.accessDoor.getPasswordField().setText( this.EMPTY );
     }
-
+    
+    // Checks if the entered password is correct. 
     private boolean isAccessKey() {
         
-        PasswordFileDAO passwordFileDAO = PasswordFileDAO.getPasswordFileDAO();
-        String encryptedPassword = passwordFileDAO.getStoredPassword();
-        
-        PasswordCypher passwordCypher = PasswordCypher.callPasswordCypher();
-        String storedPassword = passwordCypher.decryptPassword( encryptedPassword );
-        
-        String enteredPassword = this.accessDoor.getPasswordField().getText();
-        return ( storedPassword.equals( enteredPassword ) );
+        try {
+            String encryptedPassword =
+                    PasswordFileDAO.getPasswordFileDAO().getStoredPassword();
+            
+            String storedPassword =
+                    PasswordCypher.callPasswordCypher().decryptPassword(
+                            encryptedPassword
+                    );
+            
+            String enteredPassword = this.accessDoor.getPasswordField().getText();
+            return ( storedPassword.equals( enteredPassword ) );
+            
+        } catch (FileNotFoundException ex) {
+            this.tellErrorMessagerToShowMessage( ErrorMessager.FILE_ERROR );
+        }
+        return false;
     }
-
+    
+    // Asks a question to validate authenticity.
     private String askSecurityQuestion() {
         
         JFrame questionFrame = new JFrame();
@@ -106,12 +128,13 @@ public class AccessManager extends Controller {
                 );
         return questionAnswer;
     }
-
+    
+    // Goes to the Password controller.
     private void callPasswordManager( String input_QuestionAnswer ) {
         
         boolean isAnswerCorrect = ( input_QuestionAnswer.equals( this.SECURITY_QUESTION_ANSWER ) );
         if ( isAnswerCorrect ) {
-            this.accessDoor.dispose();
+            this.closeAccessDoor();
             PasswordManager.callPasswordManager();
             
         } else {
@@ -119,6 +142,7 @@ public class AccessManager extends Controller {
         }
     }
     
+    // Shows an error message to the user.
     private void tellErrorMessagerToShowMessage(String input_ErrorMessage){
         
         ErrorMessager errorMessager = ErrorMessager.callErrorMessager();

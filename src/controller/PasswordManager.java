@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 
 import model.ErrorMessager;
@@ -8,7 +9,7 @@ import daos.PasswordFileDAO;
 import view.KeyResetBoard;
 
 /**
- * 
+ * This class manages the possible new user password information.
  * @author (c) Copyright 2016 José A. Soto. All Rights Reserved.
  */
 public class PasswordManager extends Controller {
@@ -50,44 +51,75 @@ public class PasswordManager extends Controller {
         
         return eventSource == this.keyResetBoard.getButtonOk() ;
     }
-
+    
+    // Confirms if the new password is correct. Delegates next events if true.
     private void validateNewPassword() {
         
         if ( arePasswordsMatching() ) {
-            this.storeNewPassword();
+            this.tellDAOToStoreNewPassword();
             this.callAccessManager();
             
         } else {
-            ErrorMessager errorMessager = ErrorMessager.callErrorMessager();
-            errorMessager.showErrorMessage( errorMessager.INPUT_PASSWORD_ERROR );
-            this.keyResetBoard.clearFields();
+            this.tellErrorMessagerToShowMessage(ErrorMessager.INPUT_PASSWORD_ERROR );
+            this.cleanKeyResetBoardFields();
         }
     }
-
-    private void storeNewPassword() {
-        
-        String newPassword = this.keyResetBoard.getNewPasswordField().getText();
-        PasswordCypher passwordCypher = PasswordCypher.callPasswordCypher();
-        
-        String encryptedPassword = passwordCypher.encryptPassword( newPassword );
-        PasswordFileDAO passwordFileDAO = PasswordFileDAO.getPasswordFileDAO();
-        passwordFileDAO.storePassword( encryptedPassword );
-    }
-
+    
+    // Checks if the new password is correct.
     private boolean arePasswordsMatching() {
         
         String newPassword = this.keyResetBoard.getNewPasswordField().getText();
-        String confirmedNewPassword
-                = this.keyResetBoard.getConfirmNewPasswordField().getText();
-        boolean isEntryBlank = (( newPassword.equals( this.EMPTY ) )
+        String confirmedNewPassword = 
+                this.keyResetBoard.getConfirmNewPasswordField().getText();
+        
+        boolean isEntryBlank = 
+                (( newPassword.equals( this.EMPTY ) )
                 && ( confirmedNewPassword.equals( this.EMPTY ) ));
+        
         boolean areEqualPasswords = ( newPassword.equals( confirmedNewPassword ));
+        
         return ( !isEntryBlank && areEqualPasswords );
     }
-
+    
+    // Stores the new password into the password file.
+    private void tellDAOToStoreNewPassword() {
+        
+        try {
+            String newPassword = this.keyResetBoard.getNewPasswordField().getText();
+            PasswordCypher passwordCypher = PasswordCypher.callPasswordCypher();
+            
+            String encryptedPassword = passwordCypher.encryptPassword( newPassword );
+            PasswordFileDAO passwordFileDAO = PasswordFileDAO.getPasswordFileDAO();
+            passwordFileDAO.storePassword( encryptedPassword );
+            
+        } catch (FileNotFoundException ex) {
+            this.tellErrorMessagerToShowMessage( ErrorMessager.FILE_ERROR );
+        }
+    }
+    
+    // Goes to the AccessDoor controller.
     private void callAccessManager() {
         
+        this.closeKeyResetBoard();
+        AccessManager.callAccessManager();
+    }
+    
+    // Closes the window.
+    private void closeKeyResetBoard(){
+        
         this.keyResetBoard.dispose();
-        AccessManager accessManager = new AccessManager();
+    }
+    
+    // Resets the window.
+    private void cleanKeyResetBoardFields(){
+        
+        this.keyResetBoard.clearFields();
+    }
+    
+    // Shows an error message to the user.
+    private void tellErrorMessagerToShowMessage(String input_ErrorMessage){
+        
+        ErrorMessager errorMessager = ErrorMessager.callErrorMessager();
+        errorMessager.showErrorMessage( input_ErrorMessage );
     }
 }
