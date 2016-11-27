@@ -101,7 +101,7 @@ public class OrdersDAO extends DAO{
                     super.connectionToDatabase.prepareStatement( this.UPDATE_ISBAKED_QUERY );
             queryStatement.setString( this.FIRST_QUERY_VALUE, input_Folio );
             
-            queryStatement.executeQuery();
+            queryStatement.execute();
             
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -115,8 +115,8 @@ public class OrdersDAO extends DAO{
         
         String output_Date = ""
                 + calendar.get( Calendar.YEAR )+"/"
-                + calendar.get( Calendar.MONTH )+"/"
-                + calendar.get( Calendar.YEAR )+" "
+                + ( calendar.get( Calendar.MONTH ) + 1 )+"/"
+                + calendar.get( Calendar.DAY_OF_MONTH )+" "
                 + calendar.get( Calendar.HOUR_OF_DAY )+":"
                 + calendar.get( Calendar.MINUTE );
         return output_Date;

@@ -63,6 +63,9 @@ public final class IngredientsListManager extends Controller {
         //implementar cuando se tenga el DAO
         WarningMessager warningMessager = WarningMessager.callWarningMessager();
         warningMessager.showWarningMessage(warningMessager.CONFIRM_BAKING_ORDER);
+        
+        OrdersManager.callOrdersManager().markOrderAsBaked( this.order.getFolio() );
+        
         this.ingredientsSheet.dispose();
     }
 

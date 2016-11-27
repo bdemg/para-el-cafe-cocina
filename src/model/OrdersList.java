@@ -11,7 +11,7 @@ public class OrdersList extends DefaultTableModel {
     public static final int DUE_DATE = 3;
     public static final int SELECTION = 4;
     
-    private static final String[] COLUMN_TITLES = {"Folio", "Producto", "Cantidad", "Fecha", "Seleccionar"};
+    private static final String[] COLUMN_TITLES = {"Folio", "Producto", "Cantidad", "Fecha de Entrega", "Seleccionar"};
 
     
     public OrdersList(int input_rowCount) {

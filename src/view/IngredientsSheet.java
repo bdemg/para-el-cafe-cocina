@@ -35,7 +35,7 @@ public class IngredientsSheet extends javax.swing.JFrame {
         closeButton = new javax.swing.JButton();
         bakeButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tableIngredients.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
