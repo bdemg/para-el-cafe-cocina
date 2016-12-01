@@ -7,7 +7,9 @@ package controller;
 
 import daos.OrdersDAO;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 import model.Chef;
+import model.ErrorMessager;
 import model.Order;
 import model.OrdersList;
 import view.OrdersBoard;
@@ -99,16 +101,36 @@ public final class OrdersManager extends Controller {
     //get the orders that haven't been baked and put them in the orders board
     private void putUpNonBakedOrdersInBoard() {
         
-        Object[][] UnbakedOrders = OrdersDAO.getOrdersDAO().retreiveNonBakedOrders(); 
-        this.ordersBoard.setOrdersList( new OrdersList( UnbakedOrders ) );
+        try{
+            
+            Object[][] UnbakedOrders = OrdersDAO.getOrdersDAO().retreiveNonBakedOrders(); 
+            this.ordersBoard.setOrdersList( new OrdersList( UnbakedOrders ) );
+            
+        }catch(SQLException ex){
+            this.tellErrorMessagerToShowMessage(ErrorMessager.DATABASE_ERROR);
+        }
     }
     
     
     //mark a given order as baked when it has been finished
     public void markOrderAsBaked(String input_orderFolio){
         
-        OrdersDAO.getOrdersDAO().updateProductBakedState(input_orderFolio);
-        this.putUpNonBakedOrdersInBoard();
+        try{
+            
+            OrdersDAO.getOrdersDAO().updateProductBakedState(input_orderFolio);
+            this.putUpNonBakedOrdersInBoard();
+            
+        }catch(SQLException ex){
+            this.tellErrorMessagerToShowMessage(ErrorMessager.DATABASE_ERROR);
+        }
+    }
+    
+    
+    // Shows an error message to the user.
+    private void tellErrorMessagerToShowMessage(String input_ErrorMessage){
+        
+        ErrorMessager errorMessager = ErrorMessager.callErrorMessager();
+        errorMessager.showErrorMessage( input_ErrorMessage );
     }
 
     

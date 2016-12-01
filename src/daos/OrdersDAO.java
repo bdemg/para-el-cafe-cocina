@@ -12,7 +12,7 @@ import java.util.Calendar;
  */
 public class OrdersDAO extends DAO{
     
-    private static final OrdersDAO ordersDAO = new OrdersDAO();
+    private static OrdersDAO ordersDAO;
     
     private final String RETREIVE_ORDERS_QUERY = 
             "SELECT folio, product_name, quantity, date, isBaked FROM sales WHERE isBaked=false";
@@ -34,12 +34,16 @@ public class OrdersDAO extends DAO{
     private final String DATE_COLUMN_NAME = "date";
     private final String ISBAKED_COLUMN_NAME = "isBaked";
     
-    private OrdersDAO(){
+    private OrdersDAO() throws SQLException{
         
         super();
     }
     
-    public static OrdersDAO getOrdersDAO(){
+    public static OrdersDAO getOrdersDAO() throws SQLException{
+        
+        if(ordersDAO == null){
+            ordersDAO = new OrdersDAO();
+        }
         
         return ordersDAO;
     }
