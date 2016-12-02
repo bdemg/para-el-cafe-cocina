@@ -11,8 +11,8 @@ import javax.swing.UIManager;
 import javax.swing.table.TableModel;
 
 /**
- *
- * @author jorge
+ * This class represents the boards where the orders that are going to be baked are put up.
+ * @author Jorge A. Cano
  */
 public class OrdersBoard extends javax.swing.JFrame {
 

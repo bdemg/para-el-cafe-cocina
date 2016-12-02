@@ -3,6 +3,11 @@ package model;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
+
+/**
+ * This class represents a list of orders that have to be baked
+ * @author Jorge A. Cano
+ */
 public class OrdersList extends DefaultTableModel {
     
     public static final int FOLIO = 0;

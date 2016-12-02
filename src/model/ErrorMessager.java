@@ -26,7 +26,7 @@ public class ErrorMessager {
     
     public static ErrorMessager callErrorMessager(){
         
-        return errorMessager;
+        return ErrorMessager.errorMessager;
     }
     
     // Shows an error message to the user.

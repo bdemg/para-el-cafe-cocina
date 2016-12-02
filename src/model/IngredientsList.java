@@ -2,6 +2,11 @@ package model;
 
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * This class represents the ingredients list that is used to bake a certian quantity
+ * of products.
+ * @author Jorge A. Cano
+ */
 public class IngredientsList extends DefaultTableModel{
     
     public static final int INGREDIENT_NAME = 0;
