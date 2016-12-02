@@ -8,7 +8,7 @@ package controller;
 import daos.OrdersDAO;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
-import model.Chef;
+import model.SousChef;
 import model.ErrorMessager;
 import model.Order;
 import model.OrdersList;
@@ -92,7 +92,7 @@ public final class OrdersManager extends Controller {
                     (int) ordersList.getValueAt( ordersCount, OrdersList.PRODUCT_QUANTITY )
                 );
                 
-                Chef.callChef().createIngredientsList( selectedOrder );
+                SousChef.callChef().createIngredientsList( selectedOrder );
             }
         }
     }

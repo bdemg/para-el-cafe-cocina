@@ -5,26 +5,26 @@
  */
 package model;
 
-import controller.IngredientsListManager;
+import controller.CuisineChef;
 import model.recipe.Recipe;
 
 /**
  * This class represents the main chef in the bakery.
  * @author Jorge A. Cano
  */
-public class Chef {
+public class SousChef {
     
-    private static final Chef chef = new Chef();
+    private static final SousChef chef = new SousChef();
     
     
-    private Chef(){
+    private SousChef(){
         ;
     }
     
     
-    public static Chef callChef(){
+    public static SousChef callChef(){
         
-        return Chef.chef;
+        return SousChef.chef;
     }
 
     
@@ -39,7 +39,7 @@ public class Chef {
                 baseIngredients );
         
         IngredientsList ingredientsList = new IngredientsList( adjustedIngredients );
-        new IngredientsListManager( ingredientsList, input_order );
+        new CuisineChef( ingredientsList, input_order );
     }
 
     

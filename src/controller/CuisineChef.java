@@ -7,7 +7,7 @@ import view.IngredientsSheet;
 import model.IngredientsList;
 import model.Order;
 
-public final class IngredientsListManager extends Controller {
+public final class CuisineChef extends Controller {
 
     private final IngredientsSheet ingredientsSheet;
     private final Order order;
@@ -15,7 +15,7 @@ public final class IngredientsListManager extends Controller {
     private final String INGREDIENTS_TITLE = "Lista de ingredientes para ";
     private final String BLANKSPACE = " "; 
 
-    public IngredientsListManager(IngredientsList inputIngredientList, Order inputOrder) {
+    public CuisineChef(IngredientsList inputIngredientList, Order inputOrder) {
         this.ingredientsSheet = new IngredientsSheet();
         this.ingredientsSheet.setIngredientsList(inputIngredientList);
         this.ingredientsSheet.setTitle(this.INGREDIENTS_TITLE + inputOrder.getProductQuantity() +
@@ -36,7 +36,7 @@ public final class IngredientsListManager extends Controller {
     public void actionPerformed(ActionEvent event) {
         Object eventSource = event.getSource();
         if (isBaking(eventSource)) {
-            this.orderCompleted();
+            this.bakeOrder();
             
         } else if (isNotGoingToBake(eventSource)) {
             this.scrapIngredientsList();
@@ -55,7 +55,7 @@ public final class IngredientsListManager extends Controller {
         this.ingredientsSheet.dispose();
     }
     
-    private void orderCompleted(){
+    private void bakeOrder(){
         //se utiliza el DAO para actualizar la BD
         //implementar cuando se tenga el DAO
         if( this.tellConfirmationMessagerToAskForConfirmation( 
@@ -64,9 +64,6 @@ public final class IngredientsListManager extends Controller {
         OrdersManager.callOrdersManager().markOrderAsBaked( this.order.getFolio() );
         this.ingredientsSheet.dispose();
         
-        }else{
-            
-        this.ingredientsSheet.dispose();
         }
     }
     
