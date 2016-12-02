@@ -17,9 +17,6 @@ public final class IngredientsListManager extends Controller {
 
     public IngredientsListManager(IngredientsList inputIngredientList, Order inputOrder) {
         this.ingredientsSheet = new IngredientsSheet();
-        this.ingredientsSheet.setVisible(true);
-        this.ingredientsSheet.setLocationRelativeTo(null);
-        this.ingredientsSheet.setResizable(false);
         this.ingredientsSheet.setIngredientsList(inputIngredientList);
         this.ingredientsSheet.setTitle(this.INGREDIENTS_TITLE + inputOrder.getProductQuantity() +
                 this.BLANKSPACE + inputOrder.getProductName());
@@ -28,7 +25,7 @@ public final class IngredientsListManager extends Controller {
         
         this.addActionListeners();
     }
-
+    
     @Override
     protected void addActionListeners() {
         this.ingredientsSheet.getCloseButton().addActionListener(this);
@@ -65,6 +62,8 @@ public final class IngredientsListManager extends Controller {
                 ConfirmationMessager.CONFIRM_BAKE_ORDER ) ){
         
         OrdersManager.callOrdersManager().markOrderAsBaked( this.order.getFolio() );
+        this.ingredientsSheet.dispose();
+        
         }else{
             
         this.ingredientsSheet.dispose();

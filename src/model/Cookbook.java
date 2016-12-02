@@ -10,7 +10,6 @@ import model.recipe.Recipe;
 import model.recipe.BakeryBreadRecipe;
 import model.recipe.ButterCreamRecipe;
 import model.recipe.CheeseCakeRecipe;
-import model.recipe.ConchaTopingRecipe;
 import model.recipe.GlassedCheeseRecipe;
 import model.recipe.LemonPieRecipe;
 import model.recipe.NutPastryRecipe;
@@ -34,7 +33,6 @@ public class Cookbook {
     private final String GLASSED_CHEESE = "Glaseado de queso";
     private final String CHEESECAKE = "Pay de Queso";
     private final String BAKERY_BREAD = "Bolillo";
-    private final String CONCHA_TOPPING = "Concha";
             
     private Cookbook(){
         ;
@@ -100,10 +98,7 @@ public class Cookbook {
             case BAKERY_BREAD:
                 requestedRecipe = new BakeryBreadRecipe();
                 break;
-                
-            case CONCHA_TOPPING:
-                requestedRecipe = new ConchaTopingRecipe();
-                break;
+
         }
         return requestedRecipe;
     }
