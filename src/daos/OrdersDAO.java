@@ -8,7 +8,7 @@ import java.sql.SQLException;
  * This class can access and modify the orders information.
  * @author (c) Copyright 2016 José A. Soto. All Rights Reserved.
  */
-public class OrdersDAO extends DAO{
+public class OrdersDAO extends DatabaseDAO{
     
     private static OrdersDAO ordersDAO;
     
