@@ -3,8 +3,6 @@ package daos;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.Calendar;
 
 /**
  * This class can access and modify the orders information.
@@ -49,20 +47,14 @@ public class OrdersDAO extends DAO{
     }
     
 	// Gets the list of orders that are not yet baked.
-    public Object[][] retreiveNonBakedOrders(){
+    public Object[][] retreiveNonBakedOrders() throws SQLException{
         
-        try { 
-            PreparedStatement queryStatement = (PreparedStatement)
-                    super.connectionToDatabase.prepareStatement( this.RETREIVE_ORDERS_QUERY );
+        PreparedStatement queryStatement = (PreparedStatement)
+                super.connectionToDatabase.prepareStatement( this.RETREIVE_ORDERS_QUERY );
             
-            ResultSet resultSet = queryStatement.executeQuery();
+        ResultSet resultSet = queryStatement.executeQuery();
             
-            return this.retreivedOrdersToArray( resultSet );
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return null;
+        return this.retreivedOrdersToArray( resultSet );
     }
     
 	// Gets the complete list of orders.
@@ -88,9 +80,11 @@ public class OrdersDAO extends DAO{
                     
             nonBakedOrders[ row ][ this.QUANTITY_COLUMN ] = 
                     resultSet.getInt( this.QUANTITY_COLUMN_NAME );
-                    
+            
             nonBakedOrders[ row ][ this.DATE_COLUMN ] = 
-                    this.timestampToString( resultSet.getTimestamp( this.DATE_COLUMN_NAME ) );
+                    new RevisedTimestamp(
+                            resultSet.getTimestamp( this.DATE_COLUMN_NAME )
+                    ).toString();
                     
             nonBakedOrders[ row ][ this.ISBAKED_COLUMN ] = 
                     resultSet.getBoolean( this.ISBAKED_COLUMN_NAME );
@@ -102,33 +96,13 @@ public class OrdersDAO extends DAO{
     }
     
 	// Sets the product baked state to true.
-    public void updateProductBakedState( String input_Folio ){
+    public void updateProductBakedState( String input_Folio ) throws SQLException{
         
-        try {
-            PreparedStatement queryStatement = (PreparedStatement)
-                    super.connectionToDatabase.prepareStatement( this.UPDATE_ISBAKED_QUERY );
-            queryStatement.setString( this.FIRST_QUERY_VALUE, input_Folio );
+        PreparedStatement queryStatement = (PreparedStatement)
+                super.connectionToDatabase.prepareStatement( this.UPDATE_ISBAKED_QUERY );
+        queryStatement.setString( this.FIRST_QUERY_VALUE, input_Folio );
             
-            queryStatement.execute();
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
-    
-	 // Converts the date to a readable format.
-    private String timestampToString(Timestamp input_Date){
-        
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(input_Date.getTime());
-        
-        String output_Date = ""
-                + calendar.get( Calendar.YEAR )+"/"
-                + ( calendar.get( Calendar.MONTH ) + 1 )+"/"
-                + calendar.get( Calendar.DAY_OF_MONTH )+" "
-                + calendar.get( Calendar.HOUR_OF_DAY )+":"
-                + calendar.get( Calendar.MINUTE );
-        return output_Date;
+        queryStatement.execute();
     }
     
 }
