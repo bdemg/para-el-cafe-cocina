@@ -16,11 +16,7 @@ public class ConfirmationMessager {
     
     private static final ConfirmationMessager confirmationMessager = new ConfirmationMessager();
     
-    public static final String CONFIRM_SALE_MESSAGE =
-        "¿Está seguro que desea guardar la orden?";
-    public static final String CONFIRM_SALE_CANCEL_MESSAGE =
-        "¿Está seguro que desea cancelar la orden?";
-
+    public static final String CONFIRM_BAKE_ORDER = "¿Desea hornear esta receta?";
     
     private ConfirmationMessager() {
         ;

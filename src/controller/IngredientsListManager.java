@@ -2,7 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
-import model.WarningMessager;
+import model.ConfirmationMessager;
 import view.IngredientsSheet;
 import model.IngredientsList;
 import model.Order;
@@ -61,12 +61,20 @@ public final class IngredientsListManager extends Controller {
     private void orderCompleted(){
         //se utiliza el DAO para actualizar la BD
         //implementar cuando se tenga el DAO
-        WarningMessager warningMessager = WarningMessager.callWarningMessager();
-        warningMessager.showWarningMessage(warningMessager.CONFIRM_BAKING_ORDER);
+        if( this.tellConfirmationMessagerToAskForConfirmation( 
+                ConfirmationMessager.CONFIRM_BAKE_ORDER ) ){
         
         OrdersManager.callOrdersManager().markOrderAsBaked( this.order.getFolio() );
-        
+        }else{
+            
         this.ingredientsSheet.dispose();
+        }
+    }
+    
+    private boolean tellConfirmationMessagerToAskForConfirmation( String input_ConfirmationMessage ){
+        
+        ConfirmationMessager confirmationMessager = ConfirmationMessager.callConfirmationMessager();
+        return confirmationMessager.askForConfirmation( input_ConfirmationMessage );
     }
 
 }
