@@ -7,7 +7,7 @@ import view.IngredientsSheet;
 import model.IngredientsList;
 import model.Order;
 
-public final class CuisineChef extends Controller {
+public final class SousChef extends Controller {
 
     private final IngredientsSheet ingredientsSheet;
     private final Order order;
@@ -15,7 +15,7 @@ public final class CuisineChef extends Controller {
     private final String INGREDIENTS_TITLE = "Lista de ingredientes para ";
     private final String BLANKSPACE = " "; 
 
-    public CuisineChef(IngredientsList inputIngredientList, Order inputOrder) {
+    public SousChef(IngredientsList inputIngredientList, Order inputOrder) {
         this.ingredientsSheet = new IngredientsSheet();
         this.ingredientsSheet.setIngredientsList(inputIngredientList);
         this.ingredientsSheet.setTitle(this.INGREDIENTS_TITLE + inputOrder.getProductQuantity() +
