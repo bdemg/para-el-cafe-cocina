@@ -5,9 +5,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import daos.PasswordFileDAO;
 import model.ErrorMessager;
 import model.PasswordCypher;
-import daos.PasswordFileDAO;
+import model.Keywords;
 import view.AccessDoor;
 
 /**
@@ -24,8 +25,6 @@ public class AccessManager extends Controller {
     private final String SECURITY_QUESTION = "¿Cuál es su nombre?";
     private final String SECURITY_QUESTION_TITLE = "Pregunta de Seguridad";
     private final String SECURITY_QUESTION_ANSWER = "nombre";
-    
-    private final String EMPTY = "";
     
     public static AccessManager callAccessManager(){
         
@@ -91,7 +90,7 @@ public class AccessManager extends Controller {
     // Resets the window.
     private void cleanAccessDoorFields(){
         
-        this.accessDoor.getPasswordField().setText( this.EMPTY );
+        this.accessDoor.getPasswordField().setText( Keywords.EMPTY );
     }
     
     // Checks if the entered password is correct. 

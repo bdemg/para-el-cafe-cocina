@@ -3,9 +3,10 @@ package controller;
 import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 
+import daos.PasswordFileDAO;
 import model.ErrorMessager;
 import model.PasswordCypher;
-import daos.PasswordFileDAO;
+import model.Keywords;
 import view.KeyResetBoard;
 
 /**
@@ -17,8 +18,6 @@ public class PasswordManager extends Controller {
     private static final PasswordManager passwordManager = new PasswordManager();
     
     private final KeyResetBoard keyResetBoard;
-
-    private final String EMPTY = "";
     
     public static PasswordManager callPasswordManager(){
         
@@ -73,8 +72,8 @@ public class PasswordManager extends Controller {
                 this.keyResetBoard.getConfirmNewPasswordField().getText();
         
         boolean isEntryBlank = 
-                (( newPassword.equals( this.EMPTY ) )
-                && ( confirmedNewPassword.equals( this.EMPTY ) ));
+                (( newPassword.equals( Keywords.EMPTY ) )
+                && ( confirmedNewPassword.equals( Keywords.EMPTY ) ));
         
         boolean areEqualPasswords = ( newPassword.equals( confirmedNewPassword ));
         
