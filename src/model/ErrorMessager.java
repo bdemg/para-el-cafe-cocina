@@ -12,11 +12,15 @@ public class ErrorMessager {
     private static final ErrorMessager errorMessager = new ErrorMessager();
     
     // Types of errors.
-    public static final String INPUT_PASSWORD_ERROR = "Contraseña inválida.";
-    public static final String FILE_ERROR = "No se encontró el archivo. Consulte con el Ingeniero.";
-    public static final String SECURITY_QUESTION_ERROR = "Respuesta incorrecta.";
+    public static final String INPUT_PASSWORD_ERROR = 
+         "Contraseña inválida.";
+    public static final String FILE_ERROR = 
+        "No se encontró el archivo. Consulte con el Ingeniero.";
+    public static final String SECURITY_QUESTION_ERROR = 
+        "Respuesta incorrecta.";
     public static final String DATABASE_ERROR = 
-            "No se puede conectar con la base de datos. Consulte con el Ingeniero.";
+        "No se puede conectar con la base de datos, verifique que esté encendida."
+        + " Si el problema presiste consulte con el Ingeniero.";
     
     private final String ERROR_TITLE = "¡Error!";
     
