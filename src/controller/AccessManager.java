@@ -17,8 +17,6 @@ import view.AccessDoor;
  */
 public class AccessManager extends Controller {
     
-    private static final AccessManager accessManager = new AccessManager();
-    
     private final AccessDoor accessDoor;
     
     // Security question info.
@@ -26,12 +24,7 @@ public class AccessManager extends Controller {
     private final String SECURITY_QUESTION_TITLE = "Pregunta de Seguridad";
     private final String SECURITY_QUESTION_ANSWER = "nombre";
     
-    public static AccessManager callAccessManager(){
-        
-        return AccessManager.accessManager;
-    }
-    
-    private AccessManager() {
+    public AccessManager() {
         
         this.accessDoor = new AccessDoor();
         
@@ -54,7 +47,7 @@ public class AccessManager extends Controller {
             
         } else if ( isPasswordForgoten ( eventSource ) ) {
             String questionAnswer = this.askSecurityQuestion();
-            this.callPasswordManager( questionAnswer );
+            this.verifyAnswer( questionAnswer );
         }
     }
     
@@ -128,17 +121,23 @@ public class AccessManager extends Controller {
         return questionAnswer;
     }
     
-    // Goes to the Password controller.
-    private void callPasswordManager( String input_QuestionAnswer ) {
+    // Validates the user's answer.
+    private void verifyAnswer( String input_QuestionAnswer ) {
         
         boolean isAnswerCorrect = ( input_QuestionAnswer.equals( this.SECURITY_QUESTION_ANSWER ) );
         if ( isAnswerCorrect ) {
-            this.closeAccessDoor();
-            PasswordManager.callPasswordManager();
+            this.callPasswordManager();
             
         } else {
             this.tellErrorMessagerToShowMessage( ErrorMessager.SECURITY_QUESTION_ERROR );
         }
+    }
+    
+    // Goes to the Password controller.
+    private void callPasswordManager(){
+        
+        this.closeAccessDoor();
+        new PasswordManager();
     }
     
     // Shows an error message to the user.

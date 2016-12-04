@@ -15,16 +15,9 @@ import view.KeyResetBoard;
  */
 public class PasswordManager extends Controller {
     
-    private static final PasswordManager passwordManager = new PasswordManager();
-    
     private final KeyResetBoard keyResetBoard;
-    
-    public static PasswordManager callPasswordManager(){
-        
-        return PasswordManager.passwordManager;
-    }
 
-    private PasswordManager() {
+    public PasswordManager() {
         
         this.keyResetBoard = new KeyResetBoard();
         
@@ -100,7 +93,7 @@ public class PasswordManager extends Controller {
     private void callAccessManager() {
         
         this.closeKeyResetBoard();
-        AccessManager.callAccessManager();
+        new AccessManager();
     }
     
     // Closes the window.
