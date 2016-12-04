@@ -2,6 +2,10 @@ package model.recipe;
 
 import model.IngredientsList;
 
+/**
+ * 
+ * @author Evan-Ian-Ray
+ */
 public class BrownieRecipe implements Recipe{
     
     private final int TOTAL_INGREDIENTS = 8;

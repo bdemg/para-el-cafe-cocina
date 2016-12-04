@@ -9,8 +9,9 @@ import model.IngredientsList;
 import javax.swing.JButton;
 
 /**
- *
- * @author José
+ * This class represents the sheet where the amount 
+ * of ingredients needed to bake the order are listed
+ * @author Evan-Ian-Ray
  */
 public class IngredientsSheet extends javax.swing.JFrame {
 

@@ -3,6 +3,10 @@ package model.recipe;
 import model.Fraction;
 import model.IngredientsList;
 
+/**
+ * 
+ * @author Evan-Ian-Ray
+ */
 public class OrangeCakeRecipe implements Recipe{
     
     private final int TOTAL_INGREDIENTS = 7;

@@ -5,7 +5,6 @@
  */
 package model.recipe;
 
-import model.Fraction;
 import model.IngredientsList;
 
 /**
