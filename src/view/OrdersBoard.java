@@ -48,7 +48,7 @@ public class OrdersBoard extends javax.swing.JFrame {
         retriveOrders = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Producción");
+        setTitle("Para el Café-Cocina");
 
         tableProduction.setModel( new model.OrdersList(0));
         tableProduction.setRowSelectionAllowed(false);
