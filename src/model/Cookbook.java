@@ -15,6 +15,10 @@ import model.recipe.LemonPieRecipe;
 import model.recipe.NutPastryRecipe;
 import model.recipe.RedVelvetCakeRecipe;
 
+/**
+ * This class represents the book which contains the recipes
+ * @author Evan-Ian-Ray
+ */
 public class Cookbook {
     
     private static final Cookbook instance = new Cookbook();

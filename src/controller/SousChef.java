@@ -7,6 +7,11 @@ import view.IngredientsSheet;
 import model.IngredientsList;
 import model.Order;
 
+/**
+ * This class represents the person in charge of what recipes are going to be baked
+ * and what ingredients are needed for said recipe to be baked
+ * @author Evan-Ian-Ray
+ */
 public final class SousChef extends Controller {
 
     private final IngredientsSheet ingredientsSheet;

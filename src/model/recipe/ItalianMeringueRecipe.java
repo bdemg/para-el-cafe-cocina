@@ -3,6 +3,10 @@ package model.recipe;
 import model.Fraction;
 import model.IngredientsList;
 
+/**
+ * 
+ * @author Evan-Ian-Ray
+ */
 public class ItalianMeringueRecipe implements Recipe {
     
     private final int TOTAL_INGREDIENTS = 5;
