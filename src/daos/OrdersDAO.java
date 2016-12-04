@@ -17,7 +17,7 @@ public class OrdersDAO extends DatabaseDAO{
     private final String UPDATE_ISBAKED_QUERY = 
             "UPDATE sales SET isBaked=true WHERE folio=?";
     
-    private final int FIRST_QUERY_VALUE = 1;
+    private final int FOLIO_INDEX_VALUE = 1;
     
 	// Orders table columns
     private final int FOLIO_COLUMN = 0;
@@ -100,7 +100,7 @@ public class OrdersDAO extends DatabaseDAO{
         
         PreparedStatement queryStatement = (PreparedStatement)
                 super.connectionToDatabase.prepareStatement( this.UPDATE_ISBAKED_QUERY );
-        queryStatement.setString( this.FIRST_QUERY_VALUE, input_Folio );
+        queryStatement.setString( this.FOLIO_INDEX_VALUE, input_Folio );
             
         queryStatement.execute();
     }
