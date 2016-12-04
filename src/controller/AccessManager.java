@@ -50,7 +50,7 @@ public class AccessManager extends Controller {
         
         Object eventSource = event.getSource();
         if ( isAccessingDoor ( eventSource ) ) {
-            this.callOrdersManager();
+            this.verifyKeyToCallOrdersManager();
             
         } else if ( isPasswordForgoten ( eventSource ) ) {
             String questionAnswer = this.askSecurityQuestion();
@@ -69,7 +69,7 @@ public class AccessManager extends Controller {
     }
     
     // Goes to the Orders controller.
-    private void callOrdersManager() {
+    private void verifyKeyToCallOrdersManager() {
   
         if ( isAccessKey() ) {
             this.closeAccessDoor();

@@ -20,7 +20,7 @@ public class ErrorMessager {
         "Respuesta incorrecta.";
     public static final String DATABASE_ERROR = 
         "No se puede conectar con la base de datos, verifique que esté encendida."
-        + " Si el problema presiste consulte con el Ingeniero.";
+        + " Si el problema persiste, consulte con el Ingeniero.";
     
     private final String ERROR_TITLE = "¡Error!";
     
